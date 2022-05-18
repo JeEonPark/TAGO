@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/find"
+        android:icon="@drawable/ic_outline_people_24"
+        android:title="찾기"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/list"
+        android:icon="@drawable/ic_round_menu_24"
+        android:title="주변 목록"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/chat"
+        android:icon="@drawable/ic_round_chat_24"
+        android:title="채팅"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_round_settings_24"
+        android:title="설정"
+        android:enabled="true"
+        />
+</menu>
