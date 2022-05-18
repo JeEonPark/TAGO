@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         TextView signUpButton = (TextView) findViewById(R.id.signUpButton);
 
-        //회원가입 누를 시 회원가입 창 띄우기
+        //회원가입 누를 시 회원가입 창 띄우기----------------------------------------
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,12 +44,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //Firebase Login 처리
+        //Firebase Login 처리------------------------------------------------
         emailTextEdit = (EditText) findViewById(R.id.emailTextEdit);
         passwordTextEdit = (EditText) findViewById(R.id.passwordTextEdit);
         loginButton = (Button) findViewById(R.id.loginButton);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        //이미 로그인 되어 있을 시 화면 넘겨줌
+        if(firebaseAuth.getCurrentUser() != null) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +66,11 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            System.out.println("success");
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            System.out.println(user.getUid());
                         } else {
                             System.out.println("fail");
                         }
