@@ -6,13 +6,13 @@
         <entry key="app/src/main/res/drawable/edit_text.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/radius_button.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/styles.xml" value="0.2495" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.18937835693359384" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.16374816894531252" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1384704589843751" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.14623751432999316" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2781650045643682" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
