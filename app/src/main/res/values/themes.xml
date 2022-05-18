@@ -23,10 +23,22 @@
         <item name="android:checkboxStyle">@style/customCheckboxFontStyle</item>
     </style>
 
-    <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="EditTextTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorControlNormal">#80000000</item>
         <item name="colorControlActivated">#53B64F</item>
         <item name="colorControlHighlight">#53B64F</item>
     </style>
+
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="fontFamily">@font/suit_light</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="fontFamily">@font/suit_light</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
 
 </resources>
