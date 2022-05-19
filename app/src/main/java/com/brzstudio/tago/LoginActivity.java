@@ -1,6 +1,7 @@
 package com.brzstudio.tago;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -19,6 +20,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthActionCodeException;
+import com.google.firebase.auth.FirebaseAuthEmailException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
@@ -62,20 +68,52 @@ public class LoginActivity extends AppCompatActivity {
                 String email = emailTextEdit.getText().toString().trim();
                 String password = passwordTextEdit.getText().toString().trim();
 
-                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            System.out.println(user.getUid());
-                        } else {
-                            System.out.println("fail");
-                        }
-                    }
-                });
+                if (email.getBytes().length <= 0) {
+                    AlertDialog.Builder wrongPassword = new AlertDialog.Builder(LoginActivity.this);
+                    wrongPassword.setTitle("아이디를 입력해주세요.").setMessage(" ");
+                    AlertDialog alertDialog = wrongPassword.create();
+                    alertDialog.show();
+                } else if (password.getBytes().length <= 0) {
+                    AlertDialog.Builder wrongPassword = new AlertDialog.Builder(LoginActivity.this);
+                    wrongPassword.setTitle("비밀번호를 입력해주세요.").setMessage(" ");
+                    AlertDialog alertDialog = wrongPassword.create();
+                    alertDialog.show();
+                } else {
+                        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+//                                  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                  startActivity(intent);
+//                                  finish();
+//                                  FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    System.out.println(task.getResult());
+                                    //System.out.println(user.getUid());
+                                } else {
+                                    {
+                                        try {
+                                            throw task.getException();
+                                        } catch (FirebaseAuthInvalidCredentialsException e) {
+//                                     System.out.println(e);
+                                            AlertDialog.Builder wrongPassword = new AlertDialog.Builder(LoginActivity.this);
+                                            wrongPassword.setTitle("입력하신 정보가 옳지 않습니다.").setMessage("다시 입력해주세요");
+                                            AlertDialog alertDialog = wrongPassword.create();
+                                            alertDialog.show();
+                                        } catch (FirebaseAuthInvalidUserException e) {
+//                                        System.out.println(e);
+                                            AlertDialog.Builder wrongPassword = new AlertDialog.Builder(LoginActivity.this);
+                                            wrongPassword.setTitle("입력하신 정보가 옳지 않습니다.").setMessage("다시 입력해주세요");
+                                            AlertDialog alertDialog = wrongPassword.create();
+                                            alertDialog.show();
+                                        } catch (Exception e) {
+                                            System.out.println(e);
+                                            ;
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                }
             }
         });
 
