@@ -3,14 +3,36 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.282" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/backarrow_button.xml" value="0.282" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/chevron_left.xml" value="0.282" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/head_count.xml" value="0.2775" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/ic_launcher_background.xml" value="0.282" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/ic_outline_people_24.xml" value="0.282" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/ic_round_chat_24.xml" value="0.282" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/ic_round_menu_24.xml" value="0.282" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/ic_round_settings_24.xml" value="0.282" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/list_count.xml" value="0.2775" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/listcount.xml" value="0.2775" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/menu_selector_color.xml" value="0.282" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/person_search.xml" value="0.2775" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/play_arrow.xml" value="0.2775" />
         <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/radius_button.xml" value="0.363" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/ui_man.xml" value="0.2775" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/ui_unisex.xml" value="0.2775" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/ui_way.xml" value="0.2775" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/ui_woman.xml" value="0.2775" />
         <entry key="..\:/SMProject/TAGO/app/src/main/res/font/font.xml" value="0.3921875" />
         <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_login.xml" value="0.22" />
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_main.xml" value="0.3619791666666667" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_roomlist.xml" value="0.33" />
         <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_roomlist_page.xml" value="0.16" />
         <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_searchloading.xml" value="0.18" />
         <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/fragment_chat.xml" value="0.3572916666666667" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/fragment_find.xml" value="0.3572916666666667" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/fragment_list.xml" value="0.3572916666666667" />
+        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/fragment_setting.xml" value="0.3572916666666667" />
         <entry key="..\:/SMProject/TAGO/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2665" />
         <entry key="..\:/SMProject/TAGO/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2665" />
         <entry key="app/src/main/res/drawable/edit_text.xml" value="0.2495" />
