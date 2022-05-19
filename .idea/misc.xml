@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/edit_text.xml" value="0.2495" />
+        <entry key="app/src/main/res/drawable/ic_round_menu_24.xml" value="0.2495" />
+        <entry key="app/src/main/res/drawable/ic_round_settings_24.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/menu_selector_color.xml" value="0.215" />
         <entry key="app/src/main/res/drawable/radius_button.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/styles.xml" value="0.2495" />
