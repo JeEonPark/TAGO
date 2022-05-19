@@ -3,23 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/drawable/radius_button.xml" value="0.363" />
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/font/font.xml" value="0.3921875" />
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_login.xml" value="0.22" />
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_main.xml" value="0.3619791666666667" />
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_roomlist.xml" value="0.33" />
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_roomlist_page.xml" value="0.16" />
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_searchloading.xml" value="0.18" />
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2665" />
-        <entry key="..\:/SMProject/TAGO/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2665" />
         <entry key="app/src/main/res/drawable/edit_text.xml" value="0.2495" />
-        <entry key="app/src/main/res/drawable/ic_round_menu_24.xml" value="0.2495" />
-        <entry key="app/src/main/res/drawable/ic_round_settings_24.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/menu_selector_color.xml" value="0.215" />
         <entry key="app/src/main/res/drawable/radius_button.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/styles.xml" value="0.2495" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.17046203613281252" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2340423583984375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.175262451171875" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.14623751432999316" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.18472222222222223" />
@@ -30,7 +18,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
