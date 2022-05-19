@@ -54,19 +54,19 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.find:
-                        Log.i(TAG, "home 들어옴");
+                        Log.i(TAG, "Find 들어옴");
                         getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_find).commitAllowingStateLoss();
                         return true;
                     case R.id.list:
-                        Log.i(TAG, "star 들어옴");
+                        Log.i(TAG, "List 들어옴");
                         getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_list).commitAllowingStateLoss();
                         return true;
                     case R.id.chat:
-                        Log.i(TAG, "group 들어옴");
+                        Log.i(TAG, "Chat 들어옴");
                         getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_chat).commitAllowingStateLoss();
                         return true;
                     case R.id.setting:
-                        Log.i(TAG, "hotel 들어옴");
+                        Log.i(TAG, "Setting 들어옴");
                         getSupportFragmentManager().beginTransaction() .replace(R.id.main_layout,fragment_setting).commitAllowingStateLoss();
                         return true;
                 }

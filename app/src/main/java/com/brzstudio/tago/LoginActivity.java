@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         TextView signUpButton = (TextView) findViewById(R.id.signUpButton);
+        TextView loginAlert = (TextView)findViewById(R.id.loginAlert);
 
         //회원가입 누를 시 회원가입 창 띄우기----------------------------------------
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -69,15 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordTextEdit.getText().toString().trim();
 
                 if (email.getBytes().length <= 0) {
-                    AlertDialog.Builder wrongPassword = new AlertDialog.Builder(LoginActivity.this);
-                    wrongPassword.setTitle("아이디를 입력해주세요.").setMessage(" ");
-                    AlertDialog alertDialog = wrongPassword.create();
-                    alertDialog.show();
+                    loginAlert.setText("이메일을 입력하세요.");
                 } else if (password.getBytes().length <= 0) {
-                    AlertDialog.Builder wrongPassword = new AlertDialog.Builder(LoginActivity.this);
-                    wrongPassword.setTitle("비밀번호를 입력해주세요.").setMessage(" ");
-                    AlertDialog alertDialog = wrongPassword.create();
-                    alertDialog.show();
+                    loginAlert.setText("비밀번호를 입력하세요.");
                 } else {
                         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -94,17 +89,11 @@ public class LoginActivity extends AppCompatActivity {
                                         try {
                                             throw task.getException();
                                         } catch (FirebaseAuthInvalidCredentialsException e) {
-//                                     System.out.println(e);
-                                            AlertDialog.Builder wrongPassword = new AlertDialog.Builder(LoginActivity.this);
-                                            wrongPassword.setTitle("입력하신 정보가 옳지 않습니다.").setMessage("다시 입력해주세요");
-                                            AlertDialog alertDialog = wrongPassword.create();
-                                            alertDialog.show();
+                                            loginAlert.setText("입력하신 정보가 올바르지 않습니다.");
+//                                          System.out.println(e);
                                         } catch (FirebaseAuthInvalidUserException e) {
-//                                        System.out.println(e);
-                                            AlertDialog.Builder wrongPassword = new AlertDialog.Builder(LoginActivity.this);
-                                            wrongPassword.setTitle("입력하신 정보가 옳지 않습니다.").setMessage("다시 입력해주세요");
-                                            AlertDialog alertDialog = wrongPassword.create();
-                                            alertDialog.show();
+                                            loginAlert.setText("입력하신 정보가 올바르지 않습니다.");
+//                                          System.out.println(e);
                                         } catch (Exception e) {
                                             System.out.println(e);
                                             ;
