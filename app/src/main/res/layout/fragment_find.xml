@@ -4,13 +4,95 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
-    <RelativeLayout
-        android:id="@+id/map_view"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <RelativeLayout
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:weightSum="1"
+            android:background="@drawable/top_left_right_rounded" >
+
+            <!-- column 전체 레이아웃 -->
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="0.85"
+                android:layout_height="match_parent"
+                android:background="#000000" >
+
+                <!-- row 목적지 레이아웃 -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:background="#FFFFFF"
+                    >
+                    <!-- 왼쪽 동그라미 점선 도형 -->
+                    <LinearLayout
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        >
+                        <ImageView
+                            android:layout_width="11dp"
+                            android:layout_height="11dp"
+                            android:src="@drawable/circle_green"
+                            android:layerType="software" />
+                        <ImageView
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:src="@drawable/dotted_line_vertical"
+                            android:layerType="software" />
+                        <ImageView
+                            android:layout_width="11dp"
+                            android:layout_height="11dp"
+                            android:src="@drawable/circle_white"
+                            android:layerType="software" />
+
+                    </LinearLayout>
+
+                    <!-- 출발지 목적지 입력 창 -->
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/passwordTextEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:fontFamily="@font/suit_medium"
+                        android:hint="출발지를 입력해주세요"
+                        android:textSize="12dp"
+                        android:background="@drawable/rounded_border_edittext"
+                        android:drawableLeft="@drawable/ic_outline_my_location_18" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
