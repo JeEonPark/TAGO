@@ -71,8 +71,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (email.getBytes().length <= 0) {
                     loginAlert.setText("이메일을 입력하세요.");
+                    emailTextEdit.requestFocus();
                 } else if (password.getBytes().length <= 0) {
                     loginAlert.setText("비밀번호를 입력하세요.");
+                    passwordTextEdit.requestFocus();
                 } else {
                         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -90,13 +92,14 @@ public class LoginActivity extends AppCompatActivity {
                                             throw task.getException();
                                         } catch (FirebaseAuthInvalidCredentialsException e) {
                                             loginAlert.setText("입력하신 정보가 올바르지 않습니다.");
+                                            emailTextEdit.requestFocus();
 //                                          System.out.println(e);
                                         } catch (FirebaseAuthInvalidUserException e) {
                                             loginAlert.setText("입력하신 정보가 올바르지 않습니다.");
+                                            emailTextEdit.requestFocus();
 //                                          System.out.println(e);
                                         } catch (Exception e) {
                                             System.out.println(e);
-                                            ;
                                         }
                                     }
                                 }
