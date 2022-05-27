@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "178035403741",
+    "project_id": "tago-d17f4",
+    "storage_bucket": "tago-d17f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178035403741:android:5e3618b10edf583592a434",
+        "android_client_info": {
+          "package_name": "com.brzstudio.tago"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178035403741-d9g8en1baoa5o5h0u3out3h21b6b3elq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC8YaPL6__guOEzWlm_SLVKX5ucYMIUcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "178035403741-d9g8en1baoa5o5h0u3out3h21b6b3elq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
