@@ -29,7 +29,7 @@
             android:orientation="horizontal"
             android:layout_gravity="bottom"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="240dp"
             android:weightSum="1"
             android:background="@drawable/top_left_right_rounded" >
 
@@ -38,9 +38,8 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:layout_width="0dp"
-                android:layout_weight="0.85"
-                android:layout_height="match_parent"
-                android:background="#000000" >
+                android:layout_weight="0.88"
+                android:layout_height="match_parent" >
 
                 <!-- row 목적지 레이아웃 -->
                 <LinearLayout
@@ -53,7 +52,7 @@
                     <LinearLayout
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:layout_width="30dp"
+                        android:layout_width="18dp"
                         android:layout_height="match_parent"
                         >
                         <ImageView
@@ -74,22 +73,78 @@
 
                     </LinearLayout>
 
-                    <!-- 출발지 목적지 입력 창 -->
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_marginTop="5dp"
-                        android:id="@+id/passwordTextEdit"
+                    <LinearLayout
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:fontFamily="@font/suit_medium"
-                        android:hint="출발지를 입력해주세요"
-                        android:textSize="12dp"
-                        android:background="@drawable/rounded_border_edittext"
-                        android:drawableLeft="@drawable/ic_outline_my_location_18" />
+                        android:layout_height="match_parent">
+
+                        <!-- 출발지 목적지 입력 창 -->
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:padding="5dp"
+                            android:id="@+id/departureEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:fontFamily="@font/suit_medium"
+                            android:hint="출발지를 입력해주세요."
+                            android:textSize="12dp"
+                            android:background="@drawable/rounded_border_edittext"
+                            android:drawableLeft="@drawable/ic_outline_my_location_18"
+                            android:drawablePadding="5dp"/>
+
+                        <LinearLayout
+                            android:id="@+id/emptyLinearLayout"
+                            android:layout_width="0px"
+                            android:layout_height="10dp"
+                            android:orientation="vertical" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:padding="5dp"
+                            android:id="@+id/ArrivalTextEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:fontFamily="@font/suit_medium"
+                            android:hint="목적지를 입력해주세요."
+                            android:textSize="12dp"
+                            android:background="@drawable/rounded_border_edittext"
+                            android:drawableLeft="@drawable/ic_round_pin_drop_18"
+                            android:drawablePadding="5dp"/>
+                    </LinearLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="동성 매칭을 희망합니다."
+                        android:fontFamily="@font/suit_light"
+                        android:textSize="12dp"
+                        android:id="@+id/check1"
+                        android:checked="true" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/FindButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/radius_button"
+                    android:fontFamily="@font/suit_semibold"
+                    android:text="같이 탈 사람 찾기"
+                    android:textSize="12dp"
+                    android:textColor="@color/white" />
+
+
+
             </LinearLayout>
 
+
         </LinearLayout>
+
 
     </FrameLayout>
 
