@@ -35,7 +35,8 @@
 
             <!-- column 전체 레이아웃 -->
             <LinearLayout
-                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_weight="0.88"
@@ -61,8 +62,8 @@
                             android:src="@drawable/circle_green"
                             android:layerType="software" />
                         <ImageView
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:src="@drawable/dotted_line_vertical"
                             android:layerType="software" />
                         <ImageView
@@ -74,7 +75,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="15dp"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
@@ -115,23 +116,28 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:gravity="start"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
                     <CheckBox
-                        android:layout_width="match_parent"
+                        android:layout_marginLeft="-22dp"
+                        android:paddingLeft="8dp"
+                        android:scaleX="0.80"
+                        android:scaleY="0.80"
+                        android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:text="동성 매칭을 희망합니다."
                         android:fontFamily="@font/suit_light"
-                        android:textSize="12dp"
+                        android:textSize="15dp"
                         android:id="@+id/check1"
                         android:checked="true" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="14dp"
                     android:id="@+id/FindButton"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/radius_button"
                     android:fontFamily="@font/suit_semibold"
                     android:text="같이 탈 사람 찾기"
