@@ -62,8 +62,8 @@
                             android:src="@drawable/circle_green"
                             android:layerType="software" />
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:src="@drawable/dotted_line_vertical"
                             android:layerType="software" />
                         <ImageView
@@ -82,14 +82,16 @@
                         android:layout_height="match_parent">
 
                         <!-- 출발지 목적지 입력 창 -->
-                        <androidx.appcompat.widget.AppCompatEditText
-                            android:padding="5dp"
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:padding="10dp"
                             android:id="@+id/departureEditText"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:fontFamily="@font/suit_medium"
-                            android:hint="출발지를 입력해주세요."
+                            android:text="출발지를 입력해주세요."
                             android:textSize="12dp"
+                            android:textColor="#4D000000"
+                            android:textAlignment="textStart"
                             android:background="@drawable/rounded_border_edittext"
                             android:drawableLeft="@drawable/ic_outline_my_location_18"
                             android:drawablePadding="5dp"/>
@@ -100,16 +102,18 @@
                             android:layout_height="10dp"
                             android:orientation="vertical" />
 
-                        <androidx.appcompat.widget.AppCompatEditText
-                            android:padding="5dp"
-                            android:id="@+id/ArrivalTextEdit"
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:padding="10dp"
+                            android:id="@+id/arrivalEditText"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:fontFamily="@font/suit_medium"
-                            android:hint="목적지를 입력해주세요."
+                            android:text="목적지를 입력해주세요."
                             android:textSize="12dp"
+                            android:textColor="#4D000000"
+                            android:textAlignment="textStart"
                             android:background="@drawable/rounded_border_edittext"
-                            android:drawableLeft="@drawable/ic_round_pin_drop_18"
+                            android:drawableLeft="@drawable/ic_outline_my_location_18"
                             android:drawablePadding="5dp"/>
                     </LinearLayout>
 
@@ -127,7 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:text="동성 매칭을 희망합니다."
-                        android:fontFamily="@font/suit_light"
+                        android:fontFamily="@font/suit_regular"
                         android:textSize="15dp"
                         android:id="@+id/check1"
                         android:checked="true" />

@@ -50,7 +50,7 @@ public class FindFragment extends Fragment implements View.OnClickListener {
     public void setMapSize(View view) {
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int widthPixels = metrics.widthPixels;
-        int heightPixels = metrics.heightPixels - dpToPx(340);
+        int heightPixels = metrics.heightPixels - dpToPx(250);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(widthPixels, heightPixels);
 
         view.findViewById(R.id.map_view).setLayoutParams(params);

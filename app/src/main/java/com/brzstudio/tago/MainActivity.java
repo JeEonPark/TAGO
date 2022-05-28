@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         fragment_list = new ListFragment();
         fragment_chat = new ChatFragment();
         fragment_setting = new SettingFragment();
+
 
 
         // 바텀 네비게이션
