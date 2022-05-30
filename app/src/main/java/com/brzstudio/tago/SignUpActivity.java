@@ -21,7 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     private EditText emailTextEdit;
@@ -30,6 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText nicknameTextEdit;
     private Button signUpButton;
     FirebaseAuth firebaseAuth;
+    FirebaseFirestore fireStore;
 
 
 
@@ -48,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         FirebaseAuth firebaseAuth;
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
 
@@ -82,10 +87,15 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                                 if (task.isSuccessful()) {
                                     Log.d(TAG, "CreateUserWithEmail:success");
-                                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                                    FirebaseUser account = firebaseAuth.getCurrentUser();
+                                    DocumentReference documentReference = fireStore.collection("UserInformation").document(account.getUid());
+                                    Map<String, Object> userInfo = new HashMap<>();
+                                    userInfo.put("Email", email);
+                                    userInfo.put("Nickname", nickname);
+                                    userInfo.put("Password", password);
+                                    documentReference.set(userInfo);
                                     Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                     startActivity(intent);
-                                    System.out.println("11");
                                     finish();
                                 } else {
                                     Exception e = task.getException();
