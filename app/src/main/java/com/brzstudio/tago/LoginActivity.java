@@ -1,5 +1,7 @@
 package com.brzstudio.tago;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -32,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailTextEdit;
     private EditText passwordTextEdit;
     private Button loginButton;
-    FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,12 +83,11 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-//                                  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                                  startActivity(intent);
-//                                  finish();
-//                                  FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                    System.out.println(task.getResult());
-                                    //System.out.println(user.getUid());
+                                    Log.d(TAG, "signInWithEmail:success");
+                                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
                                 } else {
                                     {
                                         try {
@@ -93,11 +95,9 @@ public class LoginActivity extends AppCompatActivity {
                                         } catch (FirebaseAuthInvalidCredentialsException e) {
                                             loginAlert.setText("입력하신 정보가 올바르지 않습니다.");
                                             emailTextEdit.requestFocus();
-//                                          System.out.println(e);
                                         } catch (FirebaseAuthInvalidUserException e) {
                                             loginAlert.setText("입력하신 정보가 올바르지 않습니다.");
                                             emailTextEdit.requestFocus();
-//                                          System.out.println(e);
                                         } catch (Exception e) {
                                             System.out.println(e);
                                         }
