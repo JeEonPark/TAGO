@@ -21,7 +21,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <com.naver.maps.map.MapView
+                android:id="@+id/map_view_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+
 
 
         <LinearLayout
@@ -35,12 +44,12 @@
 
             <!-- column 전체 레이아웃 -->
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:gravity="start"
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_weight="0.88"
-                android:layout_height="match_parent" >
+                android:layout_height="230dp" >
 
                 <!-- row 목적지 레이아웃 -->
                 <LinearLayout
@@ -134,7 +143,7 @@
                         android:fontFamily="@font/suit_regular"
                         android:textSize="15dp"
                         android:id="@+id/check1"
-                        android:checked="true" />
+                        android:checked="false" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -147,8 +156,6 @@
                     android:text="같이 탈 사람 찾기"
                     android:textSize="12dp"
                     android:textColor="@color/white" />
-
-
 
             </LinearLayout>
 

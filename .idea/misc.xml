@@ -16,12 +16,15 @@
         <entry key="app/src/main/res/drawable/ic_round_menu_24.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/ic_round_settings_24.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/menu_selector_color.xml" value="0.215" />
+        <entry key="app/src/main/res/drawable/person_search.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/radius_button.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/rounded_border_edittext.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/styles.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/top_left_right_rounded.xml" value="0.2495" />
+        <entry key="app/src/main/res/layout/activity_find_searching.xml" value="0.328804347826087" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.17046203613281252" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.175262451171875" />
+        <entry key="app/src/main/res/layout/activity_searchloading.xml" value="0.21806335449218758" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.14623751432999316" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.18472222222222223" />
         <entry key="app/src/main/res/layout/fragment_find.xml" value="0.25287475585937497" />

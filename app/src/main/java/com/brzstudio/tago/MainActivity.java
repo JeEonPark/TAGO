@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.naver.maps.map.NaverMapSdk;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         fragment_list = new ListFragment();
         fragment_chat = new ChatFragment();
         fragment_setting = new SettingFragment();
+
+        NaverMapSdk.getInstance(this).setClient(
+                new NaverMapSdk.NaverCloudPlatformClient("xz03is1zp8"));
 
 
 

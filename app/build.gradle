@@ -38,6 +38,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-firestore:21.4.0'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+
+    //네이버 지도 api
+    implementation 'com.naver.maps:map-sdk:3.15.0'
 
     //importing firebase-android-bom
     implementation platform('com.google.firebase:firebase-bom:30.0.2')
