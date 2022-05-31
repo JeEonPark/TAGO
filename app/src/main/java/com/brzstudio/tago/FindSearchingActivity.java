@@ -2,13 +2,19 @@ package com.brzstudio.tago;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,10 +25,78 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FindSearchingActivity extends AppCompatActivity {
+
+    public class ListItem{
+        private String name;
+        private String phone;
+
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        public String getPhone() {
+            return phone;
+        }
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+        ListItem(String name, String phone) {
+            this.name = name;
+            this.phone = phone;
+        }
+    }
+    public class ListItemAdapter extends BaseAdapter {
+        ArrayList<ListItem> items = new ArrayList<ListItem>();
+        Context context;
+
+        @Override
+        public int getCount() {
+            return items.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return items.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            context = parent.getContext();
+            ListItem listItem = items.get(position);
+
+            if(convertView == null) {
+                LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.listview_find_searching, parent, false);
+                ;            }
+
+            TextView nameText = convertView.findViewById(R.id.name);
+            TextView phoneText = convertView.findViewById(R.id.phone);
+
+            nameText.setText(listItem.getName());
+            phoneText.setText(listItem.getPhone());
+            return convertView;
+        }
+
+        public void addItem(ListItem item) {
+            items.add(item);
+        }
+    }
+
+    ListView listView;
+    ListItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +140,19 @@ public class FindSearchingActivity extends AppCompatActivity {
             }
         });
 
+        listView = findViewById(R.id.list);
+        adapter = new ListItemAdapter();
+
+        adapter.addItem(new ListItem("김김김", "010-111-111"));
+        adapter.addItem(new ListItem("님님님", "010-222-222"));
+        adapter.addItem(new ListItem("딤딤딤", "010-333-333"));
+        listView.setAdapter(adapter);
+
+
         //리스트뷰 테스트
-        ListView list = findViewById(R.id.list);
 
     }
+
 
     private static String get(String apiUrl, Map<String, String> requestHeaders){
         HttpURLConnection con = connect(apiUrl);
