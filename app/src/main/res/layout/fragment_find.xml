@@ -93,7 +93,7 @@
                         <!-- 출발지 목적지 입력 창 -->
                         <androidx.appcompat.widget.AppCompatButton
                             android:padding="10dp"
-                            android:id="@+id/departureEditText"
+                            android:id="@+id/departureButton"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:fontFamily="@font/suit_medium"
@@ -113,7 +113,7 @@
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:padding="10dp"
-                            android:id="@+id/arrivalEditText"
+                            android:id="@+id/arrivalButton"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:fontFamily="@font/suit_medium"
@@ -122,7 +122,7 @@
                             android:textColor="#4D000000"
                             android:textAlignment="textStart"
                             android:background="@drawable/rounded_border_edittext"
-                            android:drawableLeft="@drawable/ic_outline_my_location_18"
+                            android:drawableLeft="@drawable/ic_round_pin_drop_18"
                             android:drawablePadding="5dp"/>
                     </LinearLayout>
 

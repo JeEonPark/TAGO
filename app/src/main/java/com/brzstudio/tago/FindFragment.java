@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -57,6 +58,9 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
         mapViewFragment.onCreate(savedInstanceState);
         mapViewFragment.getMapAsync(this);
         locationSource = new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
+
+        Button departureButton = (Button) view.findViewById(R.id.departureButton);
+        departureButton.setOnClickListener(this);
 
         return view;
     }
@@ -118,13 +122,10 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.signoutButton:
-                FirebaseAuth.getInstance().signOut();
+            case R.id.departureButton:
                 FragmentActivity f = getActivity();
-                Intent intent = new Intent(f, LoginActivity.class);
+                Intent intent = new Intent(f, FindSearchingActivity.class);
                 startActivity(intent);
-                f.finish();
-
         }
     }
 
