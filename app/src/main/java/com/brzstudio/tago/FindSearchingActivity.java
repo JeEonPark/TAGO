@@ -143,9 +143,9 @@ public class FindSearchingActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
         adapter = new ListItemAdapter();
 
-        adapter.addItem(new ListItem("김김김", "010-111-111"));
-        adapter.addItem(new ListItem("님님님", "010-222-222"));
-        adapter.addItem(new ListItem("딤딤딤", "010-333-333"));
+        adapter.addItem(new ListItem("상명대학교 천안캠퍼스", "충남 천안시 동남구 상명대길 31"));
+        adapter.addItem(new ListItem("상명대학교 천안캠퍼스", "충남 천안시 동남구 상명대길 31"));
+        adapter.addItem(new ListItem("상명대학교 천안캠퍼스", "충남 천안시 동남구 상명대길 31"));
         listView.setAdapter(adapter);
 
 
