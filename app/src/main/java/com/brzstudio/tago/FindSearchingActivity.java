@@ -144,6 +144,7 @@ public class FindSearchingActivity extends AppCompatActivity {
                 DepartureArrivalData.setArrivalX(0);
                 DepartureArrivalData.setArrivalY(0);
 
+                setResult(201);
                 finish();
             }
         });
@@ -152,10 +153,11 @@ public class FindSearchingActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
 
 
-
-        //출발지 입력 후 엔터키 눌렀을 경우
         departureEditText = findViewById(R.id.departureEditText);
         arrivalEditText = findViewById(R.id.arrivalEditText);
+        departureEditText.setText(DepartureArrivalData.getDeparture());
+        arrivalEditText.setText(DepartureArrivalData.getArrival());
+
         //출발지 리스너
         departureEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -312,7 +314,7 @@ public class FindSearchingActivity extends AppCompatActivity {
                                 listView.setAdapter(adapter);
                             }
                             if(DepartureArrivalData.getDoneDeparture() && DepartureArrivalData.getDoneArrival()){
-                                setResult(100);
+                                setResult(200);
                                 finish();
                             }
                         }

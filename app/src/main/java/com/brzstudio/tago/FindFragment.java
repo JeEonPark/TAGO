@@ -34,6 +34,8 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
     private NaverMap naverMap;
     private FusedLocationSource locationSource;
     private MapView mapViewFragment;
+    Button departureButton;
+    Button arrivalButton;
 
     public FindFragment() { }
 
@@ -63,10 +65,24 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
         mapViewFragment.getMapAsync(this);
         locationSource = new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
 
-        Button departureButton = (Button) view.findViewById(R.id.departureButton);
-        Button arrivalButton = (Button) view.findViewById(R.id.arrivalButton);
+        departureButton = (Button) view.findViewById(R.id.departureButton);
+        arrivalButton = (Button) view.findViewById(R.id.arrivalButton);
         departureButton.setOnClickListener(this);
         arrivalButton.setOnClickListener(this);
+
+        //값 설정
+        if(DepartureArrivalData.getDoneDeparture() && DepartureArrivalData.getDoneArrival()){
+            departureButton.setText(DepartureArrivalData.getDeparture());
+            arrivalButton.setText(DepartureArrivalData.getArrival());
+
+            departureButton.setTextColor(0xFF000000);
+            arrivalButton.setTextColor(0xFF000000);
+        } else {
+            departureButton.setText("출발지를 입력해주세요.");
+            arrivalButton.setText("목적지를 입력해주세요.");
+            departureButton.setTextColor(0x4D000000);
+            arrivalButton.setTextColor(0x4D000000);
+        }
 
         return view;
     }
@@ -87,8 +103,18 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if(result.getResultCode() == 100) {
+                    if(result.getResultCode() == 200) { //출발지 목적지 정상 입력
+                        System.out.println("asdfasdfdasf " + DepartureArrivalData.getArrival());
+                        departureButton.setText(DepartureArrivalData.getDeparture());
+                        arrivalButton.setText(DepartureArrivalData.getArrival());
 
+                        departureButton.setTextColor(0xFF000000);
+                        arrivalButton.setTextColor(0xFF000000);
+                    } else if (result.getResultCode() == 201) { //뒤로가기 눌러서 초기화
+                        departureButton.setText("출발지를 입력해주세요.");
+                        arrivalButton.setText("목적지를 입력해주세요.");
+                        departureButton.setTextColor(0x4D000000);
+                        arrivalButton.setTextColor(0x4D000000);
                     }
                 }
             });
