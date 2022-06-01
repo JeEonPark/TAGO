@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -60,11 +64,36 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
         locationSource = new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
 
         Button departureButton = (Button) view.findViewById(R.id.departureButton);
+        Button arrivalButton = (Button) view.findViewById(R.id.arrivalButton);
         departureButton.setOnClickListener(this);
+        arrivalButton.setOnClickListener(this);
 
         return view;
     }
 
+
+    //버튼 이벤트 처리
+    public void onClick(View view) {
+        if(view.getId() == R.id.departureButton || view.getId() == R.id.arrivalButton) {
+            FragmentActivity f = getActivity();
+            Intent intent = new Intent(f, FindSearchingActivity.class);
+            startActivityIntent.launch(intent);
+        }
+    }
+
+    //출발지 목적지
+    final ActivityResultLauncher<Intent> startActivityIntent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == 100) {
+
+                    }
+                }
+            });
+
+    //지도 관련----------------------------------------------------------------------------
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
         naverMap.setLocationSource(locationSource);
@@ -118,15 +147,6 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
     {
         super.onLowMemory();
         mapViewFragment.onLowMemory();
-    }
-
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.departureButton:
-                FragmentActivity f = getActivity();
-                Intent intent = new Intent(f, FindSearchingActivity.class);
-                startActivity(intent);
-        }
     }
 
     public void setMapSize(View view) {
