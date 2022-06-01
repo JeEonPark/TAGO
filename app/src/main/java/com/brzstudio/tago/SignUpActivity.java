@@ -90,9 +90,9 @@ public class SignUpActivity extends AppCompatActivity {
                                     FirebaseUser account = firebaseAuth.getCurrentUser();
                                     DocumentReference documentReference = fireStore.collection("UserInformation").document(account.getUid());
                                     Map<String, Object> userInfo = new HashMap<>();
-                                    userInfo.put("Email", email);
-                                    userInfo.put("Nickname", nickname);
-                                    userInfo.put("Password", password);
+                                    userInfo.put("email", email);
+                                    userInfo.put("nickname", nickname);
+                                    userInfo.put("password", password);
                                     documentReference.set(userInfo);
                                     Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                     startActivity(intent);
