@@ -109,7 +109,7 @@ public class FindSearchingActivity extends AppCompatActivity {
         }
     }
 
-    ListView chatList;
+    ListView listView;
     ListItemAdapter adapter;
     EditText arrivalEditText;
     EditText departureEditText;
@@ -127,15 +127,6 @@ public class FindSearchingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_searching);
-
-        GetLocalData gld = new GetLocalData();
-        gld.start();
-        try {
-            gld.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
 
         //뒤로가기 눌렀을 경우
         ImageView backButton = findViewById(R.id.backButton);
