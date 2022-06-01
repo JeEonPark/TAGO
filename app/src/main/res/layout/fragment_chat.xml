@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FindSearchingActivity">
+    tools:context=".ChatFragment">
 
     <!--제목, 상단바-->
     <LinearLayout
@@ -56,7 +56,7 @@
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/profilePic"
+                android:id="@+id/recentProfilePic"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/circle_profile_grey"/>
@@ -77,7 +77,7 @@
 
                 <!--출발지 텍스트-->
                 <TextView
-                    android:id="@+id/departureText"
+                    android:id="@+id/recentDepartureText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
@@ -97,7 +97,7 @@
 
                 <!--도착지 텍스트-->
                 <TextView
-                    android:id="@+id/destinationText"
+                    android:id="@+id/recentDestinationText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
@@ -115,7 +115,7 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/lastChatText"
+                    android:id="@+id/recentLastChatText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -157,7 +157,7 @@
 
                 <!--현재 인원-->
                 <TextView
-                    android:id="@+id/livePeople"
+                    android:id="@+id/recentLivePeople"
                     android:layout_width="10dp"
                     android:layout_height="wrap_content"
                     android:text="1"
@@ -178,7 +178,7 @@
 
                 <!--총 인원-->
                 <TextView
-                    android:id="@+id/totlaPeople"
+                    android:id="@+id/recentTotalPeople"
                     android:layout_width="10dp"
                     android:layout_height="wrap_content"
                     android:text="3"
@@ -209,8 +209,9 @@
 
     </LinearLayout>
 
+    <!--리스트뷰-->
     <ListView
-        android:id="@+id/chatList"
+        android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
