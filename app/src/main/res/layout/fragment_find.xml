@@ -92,18 +92,18 @@
 
                         <!-- 출발지 목적지 입력 창 -->
                         <androidx.appcompat.widget.AppCompatButton
-                            android:padding="10dp"
                             android:id="@+id/departureButton"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:fontFamily="@font/suit_medium"
-                            android:text="출발지를 입력해주세요."
-                            android:textSize="12dp"
-                            android:textColor="#4D000000"
-                            android:textAlignment="textStart"
                             android:background="@drawable/rounded_border_edittext"
                             android:drawableLeft="@drawable/ic_outline_my_location_18"
-                            android:drawablePadding="5dp"/>
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/suit_medium"
+                            android:padding="10dp"
+                            android:text="출발지를 입력해주세요."
+                            android:textAlignment="textStart"
+                            android:textColor="#4D000000"
+                            android:textSize="12dp" />
 
                         <LinearLayout
                             android:id="@+id/emptyLinearLayout"

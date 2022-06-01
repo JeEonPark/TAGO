@@ -7,40 +7,6 @@
     android:orientation="vertical"
     tools:context=".FindSearchingActivity">
 
-    <!--제목, 상단바-->
-    <LinearLayout
-        android:gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="채팅 목록"
-            android:fontFamily="@font/suit_bold"
-            android:textColor="#000000"
-            android:textSize="16dp"/>
-    </LinearLayout>
-
-    <!--최근 채팅-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"
-            android:text="최근 채팅"
-            android:fontFamily="@font/suit_bold"
-            android:textColor="#80000000"
-            android:textSize="15dp"/>
-    </LinearLayout>
-
-    <!--최근 채팅 목록-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -178,7 +144,7 @@
 
                 <!--총 인원-->
                 <TextView
-                    android:id="@+id/totlaPeople"
+                    android:id="@+id/totalPeople"
                     android:layout_width="10dp"
                     android:layout_height="wrap_content"
                     android:text="3"
@@ -191,27 +157,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <!--완료된 채팅-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"
-            android:text="완료된 채팅"
-            android:fontFamily="@font/suit_bold"
-            android:textColor="#80000000"
-            android:textSize="15dp"/>
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/chatList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 </LinearLayout>

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +26,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class FindSearchingActivity extends AppCompatActivity {
@@ -95,7 +93,7 @@ public class FindSearchingActivity extends AppCompatActivity {
         }
     }
 
-    ListView listView;
+    ListView chatList;
     ListItemAdapter adapter;
 
     @Override
@@ -140,13 +138,13 @@ public class FindSearchingActivity extends AppCompatActivity {
             }
         });
 
-        listView = findViewById(R.id.list);
+        chatList = findViewById(R.id.list);
         adapter = new ListItemAdapter();
 
         adapter.addItem(new ListItem("상명대학교 천안캠퍼스", "충남 천안시 동남구 상명대길 31"));
         adapter.addItem(new ListItem("상명대학교 천안캠퍼스", "충남 천안시 동남구 상명대길 31"));
         adapter.addItem(new ListItem("상명대학교 천안캠퍼스", "충남 천안시 동남구 상명대길 31"));
-        listView.setAdapter(adapter);
+        chatList.setAdapter(adapter);
 
 
         //리스트뷰 테스트
