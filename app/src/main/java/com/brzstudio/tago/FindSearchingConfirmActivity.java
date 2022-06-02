@@ -76,15 +76,15 @@ public class FindSearchingConfirmActivity extends AppCompatActivity implements O
                 if(isDepApp.equals("Dep")){
                     DepartureArrivalData.setDoneDeparture(true);
                     DepartureArrivalData.setDeparture(location);
-                    DepartureArrivalData.setDepartureX(Integer.parseInt(mapX));
-                    DepartureArrivalData.setDepartureY(Integer.parseInt(mapY));
+                    DepartureArrivalData.setDepartureX(tm.toLatLng().latitude);
+                    DepartureArrivalData.setDepartureY(tm.toLatLng().longitude);
 
                     setResult(100);
                 } else if(isDepApp.equals("App")) {
                     DepartureArrivalData.setDoneArrival(true);
                     DepartureArrivalData.setArrival(location);
-                    DepartureArrivalData.setArrivalX(Integer.parseInt(mapX));
-                    DepartureArrivalData.setArrivalY(Integer.parseInt(mapY));
+                    DepartureArrivalData.setArrivalX(tm.toLatLng().latitude);
+                    DepartureArrivalData.setArrivalY(tm.toLatLng().longitude);
 
                     setResult(100);
                 }
@@ -123,6 +123,7 @@ public class FindSearchingConfirmActivity extends AppCompatActivity implements O
     public void onMapReady(@NonNull NaverMap naverMap) {
         CameraPosition cameraPosition = new CameraPosition(tm.toLatLng(), 16);
         naverMap.setCameraPosition(cameraPosition);
+        System.out.println(tm.toLatLng().latitude);
     }
 
     @Override

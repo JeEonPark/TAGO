@@ -3,13 +3,13 @@ package com.brzstudio.tago;
 public class DepartureArrivalData {
     private static Boolean doneDeparture = false;
     private static String departure;
-    private static int departureX;
-    private static int departureY;
+    private static double departureX;
+    private static double departureY;
 
     private static Boolean doneArrival = false;
     private static String arrival;
-    private static int arrivalX;
-    private static int arrivalY;
+    private static double arrivalX;
+    private static double arrivalY;
 
     //Departure Get Set
     public static Boolean getDoneDeparture() {
@@ -26,17 +26,17 @@ public class DepartureArrivalData {
         departure = s;
     }
 
-    public static int getDepartureX() {
+    public static double getDepartureX() {
         return departureX;
     }
-    public static void setDepartureX(int i) {
+    public static void setDepartureX(double i) {
         departureX = i;
     }
 
-    public static int getDepartureY() {
+    public static double getDepartureY() {
         return departureY;
     }
-    public static void setDepartureY(int i) {
+    public static void setDepartureY(double i) {
         departureY = i;
     }
 
@@ -55,17 +55,17 @@ public class DepartureArrivalData {
         arrival = s;
     }
 
-    public static int getArrivalX() {
+    public static double getArrivalX() {
         return arrivalX;
     }
-    public static void setArrivalX(int i) {
+    public static void setArrivalX(double i) {
         arrivalX = i;
     }
 
-    public static int getArrivalY() {
+    public static double getArrivalY() {
         return arrivalY;
     }
-    public static void setArrivalY(int i) {
+    public static void setArrivalY(double i) {
         arrivalY = i;
     }
 }

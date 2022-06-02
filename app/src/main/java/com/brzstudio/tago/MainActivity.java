@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         if (chat != null) {
             ft.hide(chat);
         }
-        if (setting != null) {
+         if (setting != null) {
             ft.hide(setting);
         }
 
