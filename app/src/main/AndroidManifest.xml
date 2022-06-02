@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TAGO">
         <activity
+            android:name=".CreateNewRoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".FindSearchingConfirmActivity"
             android:exported="false" />
         <activity

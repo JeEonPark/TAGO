@@ -79,6 +79,8 @@ public class FindSearchingConfirmActivity extends AppCompatActivity implements O
                     DepartureArrivalData.setDepartureX(tm.toLatLng().latitude);
                     DepartureArrivalData.setDepartureY(tm.toLatLng().longitude);
 
+
+
                     setResult(100);
                 } else if(isDepApp.equals("App")) {
                     DepartureArrivalData.setDoneArrival(true);
