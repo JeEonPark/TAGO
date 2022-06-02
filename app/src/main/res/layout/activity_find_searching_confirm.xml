@@ -12,7 +12,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:id="@+id/map_view"
@@ -21,7 +21,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.naver.maps.map.MapView
                 android:id="@+id/map_view_fragment"
@@ -31,58 +31,56 @@
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_baseline_location_on_24"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
+                android:src="@drawable/ic_baseline_location_on_24" />
         </RelativeLayout>
 
 
-
-
         <LinearLayout
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:weightSum="1"
-            android:background="@drawable/top_left_right_rounded" >
+            android:layout_gravity="bottom"
+            android:background="@drawable/top_left_right_rounded"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
             <!-- column 전체 레이아웃 -->
             <LinearLayout
-                android:gravity="start"
-                android:orientation="vertical"
                 android:layout_width="0dp"
+                android:layout_height="130dp"
                 android:layout_weight="0.88"
-                android:layout_height="130dp" >
+                android:gravity="start"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:id="@+id/locationTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/suit_bold"
                     android:text="-"
-                    android:textSize="16dp"
-                    android:fontFamily="@font/suit_bold"/>
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/addressTextView"
-                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/suit_regular"
-                    android:text="-"/>
+                    android:text="-" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:layout_marginTop="25dp"
                     android:id="@+id/findButton"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_marginTop="25dp"
                     android:background="@drawable/radius_button"
                     android:fontFamily="@font/suit_semibold"
                     android:text="-로 설정"
-                    android:textSize="12dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
 
             </LinearLayout>
 
