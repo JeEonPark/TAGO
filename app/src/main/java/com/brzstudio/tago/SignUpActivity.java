@@ -91,7 +91,6 @@ public class SignUpActivity extends AppCompatActivity {
                                     Map<String, Object> userInfo = new HashMap<>();
                                     userInfo.put("email", email);
                                     userInfo.put("nickname", nickname);
-                                    userInfo.put("password", password);
                                     documentReference.set(userInfo);
                                     Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                     startActivity(intent);
