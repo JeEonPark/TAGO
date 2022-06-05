@@ -22,10 +22,12 @@
         <entry key="app/src/main/res/drawable/rounded_border_edittext.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/styles.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/top_left_right_rounded.xml" value="0.2495" />
+        <entry key="app/src/main/res/layout/activity_create_new_room.xml" value="0.27978057861328126" />
         <entry key="app/src/main/res/layout/activity_find_searching.xml" value="0.23134002685546876" />
         <entry key="app/src/main/res/layout/activity_find_searching_confirm.xml" value="0.3190331353081597" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26974334716796877" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.175262451171875" />
+        <entry key="app/src/main/res/layout/activity_search_loading.xml" value="0.17838439941406248" />
         <entry key="app/src/main/res/layout/activity_searchloading.xml" value="0.21806335449218758" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.14623751432999316" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.36041666666666666" />

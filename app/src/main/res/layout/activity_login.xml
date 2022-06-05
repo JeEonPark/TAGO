@@ -5,24 +5,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/logoLinearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/emptyLinearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/emptyLinearLayout"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintWidth_percent="0.8">
 
         <TextView
-            android:layout_marginBottom="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:fontFamily="@font/suit_bold"
             android:text="TAGO"
             android:textColor="#B3000000"
@@ -41,12 +41,12 @@
         android:id="@+id/emptyLinearLayout"
         android:layout_width="0px"
         android:layout_height="0px"
-        app:layout_constraintHeight_percent="0.15"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/loginInputLinearLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoLinearLayout"
-        android:orientation="vertical" />
+        app:layout_constraintTop_toBottomOf="@+id/logoLinearLayout" />
 
     <LinearLayout
         android:id="@+id/loginInputLinearLayout"
@@ -69,30 +69,31 @@
             android:theme="@style/EditTextTheme" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:layout_marginTop="5dp"
             android:id="@+id/passwordTextEdit"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/suit_medium"
             android:hint="비밀번호"
+            android:inputType="textPassword"
             android:textSize="14dp"
             android:theme="@style/EditTextTheme" />
 
         <TextView
+            android:id="@+id/loginAlert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/loginAlert"
-            android:text=""
             android:fontFamily="@font/suit_light"
-            android:textSize="10dp"
-            android:textColor="#FF0000" />
+            android:text=""
+            android:textColor="#FF0000"
+            android:textSize="10dp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="5dp"
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/radius_button"
             android:fontFamily="@font/suit_medium"
             android:text="로그인"
@@ -101,25 +102,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center" >
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="새로 오셨나요?"
                 android:fontFamily="@font/suit_medium"
-                android:textSize="12dp"
-                android:textColor="#000000"/>
+                android:text="새로 오셨나요?"
+                android:textColor="#000000"
+                android:textSize="12dp" />
+
             <TextView
                 android:id="@+id/signUpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="회원가입"
-                android:padding="10dp"
-                android:onClick="signUpButton"
                 android:fontFamily="@font/suit_semibold"
-                android:textSize="12dp"
-                android:textColor="#53B64F"/>
+                android:onClick="signUpButton"
+                android:padding="10dp"
+                android:text="회원가입"
+                android:textColor="#53B64F"
+                android:textSize="12dp" />
         </LinearLayout>
 
     </LinearLayout>

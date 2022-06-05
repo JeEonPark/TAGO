@@ -34,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText nicknameTextEdit;
     private Button signUpButton;
     FirebaseAuth firebaseAuth;
-    FirebaseFirestore fireStore;
+    FirebaseFirestore firestore;
 
 
 
@@ -51,9 +51,8 @@ public class SignUpActivity extends AppCompatActivity {
         nicknameTextEdit = (EditText) findViewById(R.id.nicknameTextEdit);
         signUpButton = (Button) findViewById(R.id.signUpButton);
 
-        FirebaseAuth firebaseAuth;
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
 
@@ -88,7 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Log.d(TAG, "CreateUserWithEmail:success");
                                     FirebaseUser account = firebaseAuth.getCurrentUser();
-                                    DocumentReference documentReference = fireStore.collection("UserInformation").document(account.getUid());
+                                    DocumentReference documentReference = firestore.collection("UserInformation").document(account.getUid());
                                     Map<String, Object> userInfo = new HashMap<>();
                                     userInfo.put("email", email);
                                     userInfo.put("nickname", nickname);

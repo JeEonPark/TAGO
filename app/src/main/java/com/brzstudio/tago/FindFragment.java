@@ -1,5 +1,7 @@
 package com.brzstudio.tago;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -32,6 +35,7 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
     private MapView mapViewFragment;
     Button departureButton;
     Button arrivalButton;
+    Button findButton;
 
     public FindFragment() { }
 
@@ -61,10 +65,15 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
         mapViewFragment.getMapAsync(this);
         locationSource = new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
 
+        //출발지 도착지 버튼
         departureButton = (Button) view.findViewById(R.id.departureButton);
         arrivalButton = (Button) view.findViewById(R.id.arrivalButton);
         departureButton.setOnClickListener(this);
         arrivalButton.setOnClickListener(this);
+
+        //같이 탈 사람 찾기 버튼
+        findButton = (Button) view.findViewById(R.id.findButton);
+        findButton.setOnClickListener(this);
 
         //값 설정
         if(DepartureArrivalData.getDoneDeparture() && DepartureArrivalData.getDoneArrival()){
@@ -90,6 +99,24 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
             FragmentActivity f = getActivity();
             Intent intent = new Intent(f, FindSearchingActivity.class);
             startActivityIntent.launch(intent);
+        } else if (view.getId() == R.id.findButton) {
+            System.out.println("findbutton 눌림");
+            // 출발지 도착지 둘 중 하나라도 입력이 없을 시
+            if(!DepartureArrivalData.getDoneArrival() || !DepartureArrivalData.getDoneDeparture()) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                alert.setMessage("출발지 혹은 목적지를 입력해주세요.");
+                // 버튼 추가 (Ok 버튼과 Cancle 버튼 )
+                alert.setPositiveButton("확인", (dialog, which) -> {
+                    // OK 버튼을 눌렸을 경우
+                    System.out.println("ok");
+                });
+                // Alert를 생성해주고 보여주는 메소드(show를 선언해야 Alert가 생성됨)
+                alert.show();
+            } else {
+                FragmentActivity f = getActivity();
+                Intent intent = new Intent(f, SearchLoadingActivity.class);
+                startActivityIntent.launch(intent);
+            }
         }
     }
 

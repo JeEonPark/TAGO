@@ -76,15 +76,15 @@ public class FindSearchingConfirmActivity extends AppCompatActivity implements O
                 if(isDepApp.equals("Dep")){
                     DepartureArrivalData.setDoneDeparture(true);
                     DepartureArrivalData.setDeparture(location);
+                    DepartureArrivalData.setDepartureAddress(address);
                     DepartureArrivalData.setDepartureX(tm.toLatLng().latitude);
                     DepartureArrivalData.setDepartureY(tm.toLatLng().longitude);
-
-
 
                     setResult(100);
                 } else if(isDepApp.equals("App")) {
                     DepartureArrivalData.setDoneArrival(true);
                     DepartureArrivalData.setArrival(location);
+                    DepartureArrivalData.setArrivalAddress(address);
                     DepartureArrivalData.setArrivalX(tm.toLatLng().latitude);
                     DepartureArrivalData.setArrivalY(tm.toLatLng().longitude);
 
