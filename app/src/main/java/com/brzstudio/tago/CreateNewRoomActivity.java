@@ -21,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.GeoPoint;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -90,8 +89,10 @@ public class CreateNewRoomActivity extends AppCompatActivity {
                 partyInfo.put("departure_address", DepartureArrivalData.getDepartureAddress());
                 partyInfo.put("arrival", DepartureArrivalData.getArrival());
                 partyInfo.put("arrival_address", DepartureArrivalData.getArrivalAddress());
-                partyInfo.put("departure_geopoint", new GeoPoint(DepartureArrivalData.getDepartureX(), DepartureArrivalData.getDepartureY()));
-                partyInfo.put("arrival_geopoint", new GeoPoint(DepartureArrivalData.getArrivalX(), DepartureArrivalData.getArrivalY()));
+                partyInfo.put("departureX", DepartureArrivalData.getDepartureX());
+                partyInfo.put("departureY", DepartureArrivalData.getDepartureY());
+                partyInfo.put("arrivalX", DepartureArrivalData.getArrivalX());
+                partyInfo.put("arrivalY", DepartureArrivalData.getArrivalY());
                 partyInfo.put("max_people", getCheckBox());
                 partyInfo.put("same_gender", sameGenderCheckBox.isChecked());
                 partyInfo.put("joined_uid", Arrays.asList(firebaseAuth.getCurrentUser().getUid()));

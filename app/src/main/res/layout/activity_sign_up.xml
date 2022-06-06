@@ -42,7 +42,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/loginInputLinearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintHeight_percent="0.10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoLinearLayout" />
 
@@ -97,6 +97,36 @@
             android:hint="닉네임"
             android:textSize="14dp"
             android:theme="@style/EditTextTheme" />
+
+        <RadioGroup
+            android:layout_marginTop="15dp"
+            android:id="@+id/genderRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/manRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:checked="false"
+                android:fontFamily="@font/suit_regular"
+                android:scaleX="0.80"
+                android:scaleY="0.80"
+                android:text="남성"
+                android:textSize="15dp" />
+
+            <RadioButton
+                android:id="@+id/womanRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:checked="false"
+                android:fontFamily="@font/suit_regular"
+                android:scaleX="0.80"
+                android:scaleY="0.80"
+                android:text="여성"
+                android:textSize="15dp" />
+        </RadioGroup>
 
         <TextView
             android:id="@+id/signUpAlert"

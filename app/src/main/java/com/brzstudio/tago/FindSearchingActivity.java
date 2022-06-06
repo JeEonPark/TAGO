@@ -93,7 +93,6 @@ public class FindSearchingActivity extends AppCompatActivity {
             if (convertView == null) {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.listview_find_searching, parent, false);
-                ;
             }
 
             TextView nameText = convertView.findViewById(R.id.name);
@@ -379,7 +378,7 @@ public class FindSearchingActivity extends AppCompatActivity {
     }
 
     //네이버 API 데이터 받아오는 쓰레드
-    public class GetLocalData extends Thread {
+    public static class GetLocalData extends Thread {
 
         EditText isDepAppEditText;
         public GetLocalData(EditText data) {

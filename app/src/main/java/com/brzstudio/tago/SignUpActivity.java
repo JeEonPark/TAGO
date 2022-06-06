@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText passwordCheckTextEdit;
     private EditText nicknameTextEdit;
     private Button signUpButton;
+    private RadioGroup genderRadioGroup;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firestore;
 
@@ -74,6 +77,8 @@ public class SignUpActivity extends AppCompatActivity {
                 } else if (nickname.getBytes().length <= 0) {
                     signUpAlert.setText("닉네임을 입력하세요.");
                     nicknameTextEdit.requestFocus();
+                } else if (getCheckBox() == 0) {
+                    signUpAlert.setText("성별을 선택해주세요.");
                 } else {
                     firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -91,6 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     Map<String, Object> userInfo = new HashMap<>();
                                     userInfo.put("email", email);
                                     userInfo.put("nickname", nickname);
+                                    userInfo.put("gender", getCheckBox());
                                     documentReference.set(userInfo);
                                     Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                     startActivity(intent);
@@ -121,5 +127,19 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    //남녀 체크박스 1:남성 2:여성
+    public int getCheckBox() {
+        RadioButton man = (RadioButton) findViewById(R.id.manRadio);
+        RadioButton woman = (RadioButton) findViewById(R.id.womanRadio);
+
+        if(man.isChecked()) {
+            return 1;
+        } else if (woman.isChecked()){
+            return 2;
+        }
+
+        return 0;
     }
 }
