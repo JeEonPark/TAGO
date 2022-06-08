@@ -17,6 +17,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -50,36 +52,24 @@ public class SearchLoadingActivity extends AppCompatActivity {
     // 내 출발지 목적지의 500m 이내에 매칭되는 파티 가져오기 (기준 : only 정사각형)
     public class GetPartyData extends Thread {
         FirebaseFirestore firestore;
-
-        double coef = 0.00451;
-        double lon = 0.00449;
-
-        double departureLowerX = DepartureArrivalData.getDepartureX() - coef;
-        double departureLowerY = DepartureArrivalData.getDepartureY() - coef / Math.cos(DepartureArrivalData.getDepartureX() * 0.018);
-        double departureGreaterX = DepartureArrivalData.getDepartureX() + coef;
-        double departureGreaterY = DepartureArrivalData.getDepartureY() + coef / Math.cos(DepartureArrivalData.getDepartureX() * 0.018);
-
-        double arrivalLowerX = DepartureArrivalData.getArrivalX() - coef;
-        double arrivalLowerY = DepartureArrivalData.getArrivalY() - coef / Math.cos(DepartureArrivalData.getDepartureX() * 0.018);
-        double arrivalGreaterX = DepartureArrivalData.getArrivalX() + coef;
-        double arrivalGreaterY = DepartureArrivalData.getArrivalY() + coef / Math.cos(DepartureArrivalData.getDepartureX() * 0.018);
+        private ArrayList result = new ArrayList();
 
         public void run() {
-            System.out.println(departureLowerX + " | " + departureGreaterX + " | " + departureLowerY + " | " + departureGreaterY);
             firestore = FirebaseFirestore.getInstance();
             System.out.println("-----------Run----------");
             CollectionReference partyRef = firestore.collection("TagoParty");
-            Query q1 = partyRef
-                    .whereGreaterThan("departureX", departureLowerX)
-                    .whereLessThan("departureX", departureGreaterX);
 
-            q1.get().addOnCompleteListener(task -> {
+            partyRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         System.out.println("-----------Succ----------");
+                        Double departureX = (Double) document.getData().get("departureX");
                         Double departureY = (Double) document.getData().get("departureY");
+                        Double arrivalX = (Double) document.getData().get("arrivalX");
+                        Double arrivalY = (Double) document.getData().get("arrivalY");
 
-                        if(departureY > departureLowerY && departureY < departureGreaterY) {
+                        if(distance(DepartureArrivalData.getDepartureX(), DepartureArrivalData.getDepartureY(), departureX, departureY) <= 500
+                                && distance(DepartureArrivalData.getArrivalX(),DepartureArrivalData.getArrivalY(), arrivalX, arrivalY) <= 500) {
                             Map<String, Object> tempParty = new HashMap<>();
                             tempParty.put("author_uid", document.getData().get("author_uid"));
                             tempParty.put("departure", document.getData().get("departure"));
@@ -106,5 +96,30 @@ public class SearchLoadingActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    // 경도 위도 미터 단위 거리 계산
+    private static double distance(double lat1, double lon1, double lat2, double lon2) {
+
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1609.344;
+
+        return (dist);
+    }
+
+
+    // This function converts decimal degrees to radians
+    private static double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+
+    // This function converts radians to decimal degrees
+    private static double rad2deg(double rad) {
+        return (rad * 180 / Math.PI);
     }
 }
