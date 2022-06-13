@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.173" />
         <entry key="app/src/main/res/drawable-v24/white_circle.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/circle_green.xml" value="0.196" />
+        <entry key="app/src/main/res/drawable/circle_profile_grey.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/dotted_line_horizontal.xml" value="1.3157169799804689" />
         <entry key="app/src/main/res/drawable/dotted_line_vertical.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/edit_text.xml" value="0.2495" />
@@ -21,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_round_menu_24.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/ic_round_pin_drop_18.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/ic_round_settings_24.xml" value="0.2495" />
+        <entry key="app/src/main/res/drawable/list_count.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/man_icon.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/man_woman_icon.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/menu_selector_color.xml" value="0.215" />
