@@ -52,6 +52,10 @@ public class ListFragment extends Fragment implements View.OnClickListener {
                 f.finish();
 
             case R.id.testButton:
+//                방 만드는 편법
+//                FragmentActivity d = getActivity();
+//                Intent intent2 = new Intent(d, CreateNewRoomActivity.class);
+//                startActivity(intent2);
                 new Thread (() -> {
                     String clientId = "xz03is1zp8"; //애플리케이션 클라이언트 아이디값"
                     String clientSecret = "Ypa9kuJHBBilpKhF0HhjPCT4zU3MPLclvuAy6EF2"; //애플리케이션 클라이언트 시크릿값"

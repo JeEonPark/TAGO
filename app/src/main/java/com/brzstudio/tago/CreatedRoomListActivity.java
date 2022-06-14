@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CreatedRoomListActivity extends AppCompatActivity {
@@ -142,7 +144,15 @@ public class CreatedRoomListActivity extends AppCompatActivity {
 
         ArrayList<Map> resultList = (ArrayList<Map>) getIntent().getSerializableExtra("result");
 
-        System.out.println(resultList);
+        int indexOfList;
+        if(resultList.isEmpty()) {
+            System.out.println("no list");
+        } else {
+            for(indexOfList = 0; indexOfList == resultList.size(); indexOfList++) {
+                System.out.println("Test Line --------- Test Line --------- Test Line --------- Test Line");
+                System.out.println(resultList.get(indexOfList));
+            }
+        }
 
         // 리스트뷰 셋업
         listView = findViewById(R.id.list);
