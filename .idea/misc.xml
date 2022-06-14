@@ -36,6 +36,7 @@
         <entry key="app/src/main/res/drawable/styles.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/top_left_right_rounded.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/woman_icon.xml" value="0.1835" />
+        <entry key="app/src/main/res/layout/activity_chatroom.xml" value="0.4270833333333333" />
         <entry key="app/src/main/res/layout/activity_create_new_room.xml" value="0.27978057861328126" />
         <entry key="app/src/main/res/layout/activity_created_room_list.xml" value="0.24622802734374996" />
         <entry key="app/src/main/res/layout/activity_find_searching.xml" value="0.23134002685546876" />
@@ -47,9 +48,9 @@
         <entry key="app/src/main/res/layout/activity_searchloading.xml" value="0.21806335449218758" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.39223360807999313" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.36041666666666666" />
-        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.23984307183159723" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_find.xml" value="0.25287475585937497" />
-        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.18472222222222223" />
+        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.11976047904191617" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.17222222222222222" />
         <entry key="app/src/main/res/layout/listview_created_room.xml" value="0.2425382864162717" />
         <entry key="app/src/main/res/layout/listview_created_room_gender_0.xml" value="0.4846542358398438" />
