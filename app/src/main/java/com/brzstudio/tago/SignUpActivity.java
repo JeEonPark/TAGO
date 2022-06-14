@@ -104,6 +104,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     LoginedUserData.setEmail(email);
                                     LoginedUserData.setGender(getCheckBox());
                                     LoginedUserData.setNickname(nickname);
+                                    LoginedUserData.setUid(account.getUid());
                                     Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();

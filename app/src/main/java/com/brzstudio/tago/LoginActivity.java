@@ -124,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                     LoginedUserData.setEmail((String) document.getData().get("email"));
                     LoginedUserData.setLongGender((Long) document.getData().get("gender"));
                     LoginedUserData.setNickname((String) document.getData().get("nickname"));
+                    LoginedUserData.setUid(uid);
                 } else {
                     Log.d(TAG, "No such document");
                 }

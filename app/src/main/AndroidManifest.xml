@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TAGO">
         <activity
+            android:name=".ChatRoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".RoomInformationActivity"
             android:exported="false" />
         <activity

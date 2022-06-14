@@ -194,6 +194,7 @@ public class CreatedRoomListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String uid = (String) resultList.get(position).get("uid");
                 String departure = (String) resultList.get(position).get("departure");
                 String arrival = (String) resultList.get(position).get("arrival");
                 String departureAddress = (String) resultList.get(position).get("departure_address");
@@ -205,6 +206,7 @@ public class CreatedRoomListActivity extends AppCompatActivity {
                 String departureY = resultList.get(position).get("departureY") + "";
 
                 Intent intent = new Intent(getApplicationContext(), RoomInformationActivity.class);
+                intent.putExtra("uid", uid);
                 intent.putExtra("departure", departure);
                 intent.putExtra("arrival", arrival);
                 intent.putExtra("departureAddress", departureAddress);
