@@ -64,15 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginButton);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        //이미 로그인 되어 있을 시 화면 넘겨줌
-        if(firebaseAuth.getCurrentUser() != null) {
-            FirebaseUser user = firebaseAuth.getCurrentUser();
-            getUserData(user.getUid(), inIsTaskDone -> {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
-            });
-        }
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

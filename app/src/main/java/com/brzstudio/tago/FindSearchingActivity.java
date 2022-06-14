@@ -180,8 +180,8 @@ public class FindSearchingActivity extends AppCompatActivity {
                         titleArray = jObject.getJSONArray("items");
                         for (int i = 0; i < titleArray.length(); i++) {
                             JSONObject obj = titleArray.getJSONObject(i);
-                            String title = obj.getString("title").replace("<b>", "").replace("</b>", "");
-                            String address = obj.getString("roadAddress").replace("<b>", "").replace("</b>", "");
+                            String title = obj.getString("title").replace("<b>", "").replace("</b>", "").replace("amp;", "");;
+                            String address = obj.getString("roadAddress").replace("<b>", "").replace("</b>", "").replace("amp;", "");;
 
                             adapter.addItem(new ListItem(title, address));
                             listView.setAdapter(adapter);
@@ -225,8 +225,8 @@ public class FindSearchingActivity extends AppCompatActivity {
                         titleArray = jObject.getJSONArray("items");
                         for (int i = 0; i < titleArray.length(); i++) {
                             JSONObject obj = titleArray.getJSONObject(i);
-                            String title = obj.getString("title").replace("<b>", "").replace("</b>", "");
-                            String address = obj.getString("roadAddress").replace("<b>", "").replace("</b>", "");
+                            String title = obj.getString("title").replace("<b>", "").replace("</b>", "").replace("amp;", "");;
+                            String address = obj.getString("roadAddress").replace("<b>", "").replace("</b>", "").replace("amp;", "");;
 
                             adapter.addItem(new ListItem(title, address));
                             listView.setAdapter(adapter);
@@ -279,8 +279,8 @@ public class FindSearchingActivity extends AppCompatActivity {
                 String mapY = "";
                 try {
                     JSONObject obj = titleArray.getJSONObject(position);
-                    location = obj.getString("title").replace("<b>", "").replace("</b>", "");
-                    address = obj.getString("roadAddress").replace("<b>", "").replace("</b>", "");
+                    location = obj.getString("title").replace("<b>", "").replace("</b>", "").replace("amp;", "");;
+                    address = obj.getString("roadAddress").replace("<b>", "").replace("</b>", "").replace("amp;", "");;
                     mapX = obj.getString("mapx");
                     mapY = obj.getString("mapy");
                 } catch (JSONException e) {
