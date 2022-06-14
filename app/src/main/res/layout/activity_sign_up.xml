@@ -64,7 +64,9 @@
             android:fontFamily="@font/suit_medium"
             android:hint="이메일"
             android:textSize="14dp"
-            android:theme="@style/EditTextTheme" />
+            android:theme="@style/EditTextTheme"
+            android:singleLine="true"
+            android:lines="1"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/passwordTextEdit"
@@ -96,7 +98,9 @@
             android:fontFamily="@font/suit_medium"
             android:hint="닉네임"
             android:textSize="14dp"
-            android:theme="@style/EditTextTheme" />
+            android:theme="@style/EditTextTheme"
+            android:singleLine="true"
+            android:lines="1"/>
 
         <RadioGroup
             android:layout_marginTop="15dp"
