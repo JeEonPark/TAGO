@@ -87,6 +87,19 @@
             android:layout_height="match_parent"
             android:divider="@null"
             android:dividerHeight="0dp"/>
+        
+        <Button
+            android:id="@+id/createNewRoomButton"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/radius_button"
+            android:fontFamily="@font/suit_semibold"
+            android:textSize="12dp"
+            android:text="새로운 방 만들기" />
 
     </FrameLayout>
 

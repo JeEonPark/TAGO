@@ -3,12 +3,15 @@ package com.brzstudio.tago;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -138,6 +141,9 @@ public class CreatedRoomListActivity extends AppCompatActivity {
     ListView listView;
     ListItemAdapter adapter;
     TextView numberOfPeople;
+    ArrayList<Map> resultList;
+
+    Button createNewRoomButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +156,14 @@ public class CreatedRoomListActivity extends AppCompatActivity {
         params.setMargins(0, getStatusBarHeight(this), 0, 0);
         topBar.setLayoutParams(params);
 
-        ArrayList<Map> resultList = (ArrayList<Map>) getIntent().getSerializableExtra("result");
+        // 버튼
+        createNewRoomButton = findViewById(R.id.createNewRoomButton);
+        createNewRoomButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), CreateNewRoomActivity.class);
+            startActivity(intent);
+        });
+
+        resultList = (ArrayList<Map>) getIntent().getSerializableExtra("result");
 
         // 인원 수
         int numberOfPeopleData = resultList.size();
@@ -177,6 +190,34 @@ public class CreatedRoomListActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
+        // 리스트뷰 클릭 이벤트
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String departure = (String) resultList.get(position).get("departure");
+                String arrival = (String) resultList.get(position).get("arrival");
+                String departureAddress = (String) resultList.get(position).get("departure_address");
+                String arrivalAddress = (String) resultList.get(position).get("arrival_address");
+                int max_people = (int) (long) resultList.get(position).get("max_people");
+                List<String> joined_uid = (List<String>) resultList.get(position).get("joined_uid");
+                String nowmax = joined_uid.size() + "/" + max_people;
+                String departureX = resultList.get(position).get("departureX") + "";
+                String departureY = resultList.get(position).get("departureY") + "";
+
+                Intent intent = new Intent(getApplicationContext(), RoomInformationActivity.class);
+                intent.putExtra("departure", departure);
+                intent.putExtra("arrival", arrival);
+                intent.putExtra("departureAddress", departureAddress);
+                intent.putExtra("arrivalAddress", arrivalAddress);
+                intent.putExtra("nowmax", nowmax);
+                intent.putExtra("departureX", departureX);
+                intent.putExtra("departureY", departureY);
+
+                startActivity(intent);
+
+
+            }
+        });
 
     }
 

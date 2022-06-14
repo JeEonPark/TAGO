@@ -21,13 +21,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.naver.maps.geometry.LatLng;
+import com.naver.maps.geometry.Tm128;
+import com.naver.maps.map.CameraPosition;
+import com.naver.maps.map.MapView;
+import com.naver.maps.map.NaverMap;
+import com.naver.maps.map.OnMapReadyCallback;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateNewRoomActivity extends AppCompatActivity {
+public class CreateNewRoomActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     LinearLayout topBar;
     TextView departureTextView;
@@ -39,6 +45,9 @@ public class CreateNewRoomActivity extends AppCompatActivity {
     FirebaseFirestore firestore;
     RadioGroup radioGroup;
     CheckBox sameGenderCheckBox;
+
+    MapView mapViewFragment;
+    NaverMap naverMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,12 @@ public class CreateNewRoomActivity extends AppCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         params.setMargins(0, getStatusBarHeight(this), 0, 0);
         topBar.setLayoutParams(params);
+
+        // 지도 설정
+        //네이버지도 관련
+        mapViewFragment = (MapView) findViewById(R.id.map_view_fragment);
+        mapViewFragment.onCreate(savedInstanceState);
+        mapViewFragment.getMapAsync(this);
 
         // 출발지 도착지 TextView 입력된 정보로 변경
         departureTextView = findViewById(R.id.departureTextView);
@@ -150,4 +165,55 @@ public class CreateNewRoomActivity extends AppCompatActivity {
 
         return 0;
     }
+
+    //네이버지도 관련 함수-------------------------------------------------------------------------
+    @Override
+    public void onMapReady(@NonNull NaverMap naverMap) {
+        CameraPosition cameraPosition = new CameraPosition(new LatLng(DepartureArrivalData.getDepartureX(),DepartureArrivalData.getDepartureY()), 16);
+        naverMap.setCameraPosition(cameraPosition);
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        mapViewFragment.onStart();
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mapViewFragment.onResume();
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mapViewFragment.onPause();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+        mapViewFragment.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        mapViewFragment.onStop();
+    }
+
+    @Override
+    public void onLowMemory()
+    {
+        super.onLowMemory();
+        mapViewFragment.onLowMemory();
+    }
+
+
 }
