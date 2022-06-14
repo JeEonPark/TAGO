@@ -25,7 +25,7 @@ public class CreatedRoomListActivity extends AppCompatActivity {
         private String listDeparture;
         private String listArrival;
         private String listMeter;
-        private String listGender;
+        private int listGender;
         private String listNowmax;
 
         public String getListAuthor() {
@@ -52,10 +52,10 @@ public class CreatedRoomListActivity extends AppCompatActivity {
         public void setListMeter(String s) {
             this.listMeter = s;
         }
-        public String getListGender() {
+        public int getListGender() {
             return listGender;
         }
-        public void setListGender(String s) {
+        public void setListGender(int s) {
             this.listGender = s;
         }
         public String getListNowmax() {
@@ -66,7 +66,7 @@ public class CreatedRoomListActivity extends AppCompatActivity {
         }
 
 
-        ListItem(String author, String departure, String arrival, String meter, String gender, String nowmax) {
+        ListItem(String author, String departure, String arrival, String meter, int gender, String nowmax) {
             this.listAuthor = author;
             this.listDeparture = departure;
             this.listArrival = arrival;
@@ -100,22 +100,29 @@ public class CreatedRoomListActivity extends AppCompatActivity {
             ListItem listItem = items.get(position);
 
             if (convertView == null) {
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.listview_created_room, parent, false);
+                if (listItem.getListGender() == 0) {
+                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    convertView = inflater.inflate(R.layout.listview_created_room_gender_0, parent, false);
+                } else if (listItem.getListGender() == 1) {
+                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    convertView = inflater.inflate(R.layout.listview_created_room_gender_1, parent, false);
+                } else if (listItem.getListGender() == 2) {
+                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    convertView = inflater.inflate(R.layout.listview_created_room_gender_2, parent, false);
+                }
+
             }
 
             TextView authorText = convertView.findViewById(R.id.authorText);
             TextView departureText = convertView.findViewById(R.id.departureText);
             TextView arrivalText = convertView.findViewById(R.id.arrivalText);
             TextView meter = convertView.findViewById(R.id.meter);
-            TextView gender = convertView.findViewById(R.id.gender);
             TextView nowmax = convertView.findViewById(R.id.nowmax);
 
             authorText.setText(listItem.getListAuthor());
             departureText.setText(listItem.getListDeparture());
             arrivalText.setText(listItem.getListArrival());
             meter.setText(listItem.getListMeter());
-            gender.setText(listItem.getListGender());
             nowmax.setText(listItem.getListNowmax());
 
 
@@ -130,6 +137,7 @@ public class CreatedRoomListActivity extends AppCompatActivity {
     LinearLayout topBar;
     ListView listView;
     ListItemAdapter adapter;
+    TextView numberOfPeople;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,21 +152,29 @@ public class CreatedRoomListActivity extends AppCompatActivity {
 
         ArrayList<Map> resultList = (ArrayList<Map>) getIntent().getSerializableExtra("result");
 
-        int indexOfList;
-        if(resultList.isEmpty()) {
-            System.out.println("no list");
-        } else {
-            for(indexOfList = 0; indexOfList == resultList.size(); indexOfList++) {
-                System.out.println("Test Line --------- Test Line --------- Test Line --------- Test Line");
-                System.out.println(resultList.get(indexOfList));
-            }
-        }
+        // 인원 수
+        int numberOfPeopleData = resultList.size();
+        numberOfPeople = findViewById(R.id.numberOfPeople);
+        numberOfPeople.setText(String.valueOf(numberOfPeopleData));
 
         // 리스트뷰 셋업
         listView = findViewById(R.id.list);
         adapter = new ListItemAdapter();
 
-        adapter.addItem(new ListItem("author", "천안", "상명", "124", "남", "1/3"));
+
+        for(int i = 0; i < resultList.size(); i++) {
+            String author = UidNicknameData.getUidNicknameMap().get((String) resultList.get(i).get("author_uid"));
+            System.out.println("author test" + author);
+            String departure = (String) resultList.get(i).get("departure");
+            String arrival = (String) resultList.get(i).get("arrival");
+            int gender = (int) (long) resultList.get(i).get("gender");
+            int max_people = (int) (long) resultList.get(i).get("max_people");
+            List<String> joined_uid = (List<String>) resultList.get(i).get("joined_uid");
+            String nowmax = joined_uid.size() + "/" + max_people;
+
+            adapter.addItem(new ListItem(author, departure, arrival, "124", gender, nowmax));
+        }
+
         listView.setAdapter(adapter);
 
 

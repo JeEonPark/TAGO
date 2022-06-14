@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/circle_white.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.173" />
         <entry key="app/src/main/res/drawable-v24/white_circle.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/circle_green.xml" value="0.196" />
+        <entry key="app/src/main/res/drawable/circle_profile_grey.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/dotted_line_horizontal.xml" value="1.3157169799804689" />
         <entry key="app/src/main/res/drawable/dotted_line_vertical.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/edit_text.xml" value="0.2495" />
@@ -13,8 +15,7 @@
         <entry key="app/src/main/res/drawable/head_count.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/ic_baseline_people_alt_24.xml" value="0.1835" />
-        <entry key="app/src/main/res/drawable/ic_baseline_person_outline_30.xml" value="0.25" />
-        <entry key="app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/ic_outline_my_location_18.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/ic_outline_people_24.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/ic_outline_pin_drop_18.xml" value="0.173" />
@@ -23,21 +24,20 @@
         <entry key="app/src/main/res/drawable/ic_round_menu_24.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/ic_round_pin_drop_18.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/ic_round_settings_24.xml" value="0.2495" />
+        <entry key="app/src/main/res/drawable/list_count.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/man_icon.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/man_woman_icon.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/menu_selector_color.xml" value="0.215" />
-        <entry key="app/src/main/res/drawable/msgtext_background_green.xml" value="0.25" />
-        <entry key="app/src/main/res/drawable/msgtext_background_grey.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/people_count_icon.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/person_search.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/radius_button.xml" value="0.2495" />
+        <entry key="app/src/main/res/drawable/radius_list_box.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/rounded_border_edittext.xml" value="0.173" />
         <entry key="app/src/main/res/drawable/styles.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/top_left_right_rounded.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/woman_icon.xml" value="0.1835" />
-        <entry key="app/src/main/res/layout/activity_chat_room.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_create_new_room.xml" value="0.27978057861328126" />
-        <entry key="app/src/main/res/layout/activity_created_room_list.xml" value="0.3050079345703125" />
+        <entry key="app/src/main/res/layout/activity_created_room_list.xml" value="0.13103485107421875" />
         <entry key="app/src/main/res/layout/activity_find_searching.xml" value="0.23134002685546876" />
         <entry key="app/src/main/res/layout/activity_find_searching_confirm.xml" value="0.3190331353081597" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.18368094690134504" />
@@ -50,10 +50,10 @@
         <entry key="app/src/main/res/layout/fragment_find.xml" value="0.25287475585937497" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.18472222222222223" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.17222222222222222" />
-        <entry key="app/src/main/res/layout/listview_chatroom_my_msg.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/listview_chatroom_mymsg.xml" value="0.422613531047266" />
-        <entry key="app/src/main/res/layout/listview_chatroom_passenger_msg.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/listview_created_room.xml" value="0.31373138427734376" />
+        <entry key="app/src/main/res/layout/listview_created_room.xml" value="0.2425382864162717" />
+        <entry key="app/src/main/res/layout/listview_created_room_gender_0.xml" value="0.4846542358398438" />
+        <entry key="app/src/main/res/layout/listview_created_room_gender_1.xml" value="0.14155405405405405" />
+        <entry key="app/src/main/res/layout/listview_created_room_gender_2.xml" value="0.14155405405405405" />
         <entry key="app/src/main/res/layout/listview_find_searching.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/listview_fragment_chat.xml" value="0.15566234851650648" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.3475593849464699" />

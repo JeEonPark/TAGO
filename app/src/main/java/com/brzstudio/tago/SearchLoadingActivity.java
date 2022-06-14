@@ -37,17 +37,17 @@ public class SearchLoadingActivity extends AppCompatActivity {
 
 
         getPartyData(inIsTaskDone -> {
-            Intent intent = new Intent(getApplicationContext(), CreatedRoomListActivity.class);
-            intent.putExtra("result", result);
-            startActivity(intent);
-            finish();
+            UidNicknameData.updateUid(inIsTaskDone2 -> {
+                Intent intent = new Intent(getApplicationContext(), CreatedRoomListActivity.class);
+                intent.putExtra("result", result);
+                startActivity(intent);
+                finish();
+            });
         });
-
-
 
     }
 
-    //// 내 출발지 목적지의 500m 이내에 매칭되는 파티 가져오기 (기준 : only 정사각형)
+    // 내 출발지 목적지의 500m 이내에 매칭되는 파티 가져오기 (기준 : only 정사각형)
     public void getPartyData(final isTaskDoneCallback callback) {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         CollectionReference partyRef = firestore.collection("TagoParty");
@@ -75,7 +75,7 @@ public class SearchLoadingActivity extends AppCompatActivity {
                         tempParty.put("arrivalX", document.getData().get("arrivalX"));
                         tempParty.put("arrivalY", document.getData().get("arrivalY"));
                         tempParty.put("max_people", document.getData().get("max_people"));
-                        tempParty.put("same_gender", document.getData().get("same_gender"));
+                        tempParty.put("gender", document.getData().get("gender"));
                         tempParty.put("joined_uid", document.getData().get("joined_uid"));
                         tempParty.put("date", document.getData().get("date"));
 
