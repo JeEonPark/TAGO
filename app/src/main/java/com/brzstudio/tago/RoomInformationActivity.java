@@ -6,8 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RoomInformationActivity extends AppCompatActivity {
 
@@ -17,6 +21,8 @@ public class RoomInformationActivity extends AppCompatActivity {
     TextView arrivalTextView;
     TextView arrivalAddressTextView;
     TextView nowmaxTextView;
+
+    Button joinRoomButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +41,36 @@ public class RoomInformationActivity extends AppCompatActivity {
         arrivalAddressTextView = findViewById(R.id.arrivalAddressTextView);
         nowmaxTextView = findViewById(R.id.nowmaxTextView);
 
+        joinRoomButton = findViewById(R.id.joinRoom);
+
         //이전 액티비티 intent 전달 값 받아오기
-        Intent intent = getIntent();
-        String departure = intent.getStringExtra("departure");
-        String arrival = intent.getStringExtra("arrival");
-        String departureAddress = intent.getStringExtra("departureAddress");
-        String arrivalAddress = intent.getStringExtra("arrivalAddress");
-        String nowmax = intent.getStringExtra("nowmax");
-        String departureX = intent.getStringExtra("departureX");
-        String departureY = intent.getStringExtra("departureY");
+        Intent intendData = getIntent();
+        String uid = intendData.getStringExtra("uid");
+        String departure = intendData.getStringExtra("departure");
+        String arrival = intendData.getStringExtra("arrival");
+        String departureAddress = intendData.getStringExtra("departureAddress");
+        String arrivalAddress = intendData.getStringExtra("arrivalAddress");
+        String nowmax = intendData.getStringExtra("nowmax");
+        String departureX = intendData.getStringExtra("departureX");
+        String departureY = intendData.getStringExtra("departureY");
 
         departureTextView.setText(departure);
         arrivalTextView.setText(arrival);
         departureAddressTextView.setText(departureAddress);
         arrivalAddressTextView.setText(arrivalAddress);
         nowmaxTextView.setText("현재 참여 인원 : " + nowmax);
+
+        // 같이 탑승하기 버튼 이벤트
+        joinRoomButton.setOnClickListener(view -> {
+            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+            firestore.collection("TagoParty").document(uid).update("joined_uid", FieldValue.arrayUnion(LoginedUserData.getUid()));
+
+            Intent intent = new Intent(getApplicationContext(), ChatRoomActivity.class);
+            intent.putExtra("uid", uid);
+
+            startActivity(intent);
+
+        });
 
     }
 

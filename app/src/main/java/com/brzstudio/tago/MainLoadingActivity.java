@@ -16,16 +16,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainLoadingActivity extends AppCompatActivity {
 
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_loading);
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         //이미 로그인되어있으면 넘겨줌
         if(firebaseAuth.getCurrentUser() != null) {
-            FirebaseUser user = firebaseAuth.getCurrentUser();
+            user = firebaseAuth.getCurrentUser();
             getUserData(user.getUid(), inIsTaskDone -> {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -50,6 +53,7 @@ public class MainLoadingActivity extends AppCompatActivity {
                     LoginedUserData.setEmail((String) document.getData().get("email"));
                     LoginedUserData.setLongGender((Long) document.getData().get("gender"));
                     LoginedUserData.setNickname((String) document.getData().get("nickname"));
+                    LoginedUserData.setUid(uid);
                 } else {
                     Log.d(TAG, "No such document");
                 }

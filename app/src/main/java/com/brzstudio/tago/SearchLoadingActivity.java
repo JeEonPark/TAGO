@@ -65,6 +65,7 @@ public class SearchLoadingActivity extends AppCompatActivity {
                     if(distance(DepartureArrivalData.getDepartureX(), DepartureArrivalData.getDepartureY(), departureX, departureY) <= 500
                             && distance(DepartureArrivalData.getArrivalX(),DepartureArrivalData.getArrivalY(), arrivalX, arrivalY) <= 500) {
                         Map<String, Object> tempParty = new HashMap<>();
+                        tempParty.put("uid", document.getId());
                         tempParty.put("author_uid", document.getData().get("author_uid"));
                         tempParty.put("departure", document.getData().get("departure"));
                         tempParty.put("departure_address", document.getData().get("departure_address"));

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".CreateNewRoomActivity">
+    android:orientation="vertical">
 
     <!--제목, 상단바-->
     <LinearLayout
@@ -223,7 +222,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_marginBottom="30dp"
-                    android:id="@+id/createRoom"
+                    android:id="@+id/joinRoom"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/radius_button"
