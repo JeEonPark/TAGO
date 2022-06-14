@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,85 +18,89 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Array;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SearchLoadingActivity extends AppCompatActivity {
+
+    ArrayList<Map<String, Object>> result = new ArrayList<>();;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_loading);
 
-//        new Handler().postDelayed(() -> {
-//            Intent intent = new Intent(getApplicationContext(), CreateNewRoomActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }, 3000);
 
-        GetPartyData gld = new GetPartyData();
-        gld.start();
-        try {
-            gld.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        getPartyData(inIsTaskDone -> {
+            Intent intent = new Intent(getApplicationContext(), CreatedRoomListActivity.class);
+            intent.putExtra("result", result);
+            startActivity(intent);
+            finish();
+        });
+
 
 
     }
 
+    //// 내 출발지 목적지의 500m 이내에 매칭되는 파티 가져오기 (기준 : only 정사각형)
+    public void getPartyData(final isTaskDoneCallback callback) {
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        CollectionReference partyRef = firestore.collection("TagoParty");
 
-    // 내 출발지 목적지의 500m 이내에 매칭되는 파티 가져오기 (기준 : only 정사각형)
-    public class GetPartyData extends Thread {
-        FirebaseFirestore firestore;
-        private ArrayList result = new ArrayList();
+        partyRef.get().addOnCompleteListener(task -> {
 
-        public void run() {
-            firestore = FirebaseFirestore.getInstance();
-            System.out.println("-----------Run----------");
-            CollectionReference partyRef = firestore.collection("TagoParty");
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    System.out.println("-----------Succ----------");
+                    Double departureX = (Double) document.getData().get("departureX");
+                    Double departureY = (Double) document.getData().get("departureY");
+                    Double arrivalX = (Double) document.getData().get("arrivalX");
+                    Double arrivalY = (Double) document.getData().get("arrivalY");
 
-            partyRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        System.out.println("-----------Succ----------");
-                        Double departureX = (Double) document.getData().get("departureX");
-                        Double departureY = (Double) document.getData().get("departureY");
-                        Double arrivalX = (Double) document.getData().get("arrivalX");
-                        Double arrivalY = (Double) document.getData().get("arrivalY");
+                    if(distance(DepartureArrivalData.getDepartureX(), DepartureArrivalData.getDepartureY(), departureX, departureY) <= 500
+                            && distance(DepartureArrivalData.getArrivalX(),DepartureArrivalData.getArrivalY(), arrivalX, arrivalY) <= 500) {
+                        Map<String, Object> tempParty = new HashMap<>();
+                        tempParty.put("author_uid", document.getData().get("author_uid"));
+                        tempParty.put("departure", document.getData().get("departure"));
+                        tempParty.put("departure_address", document.getData().get("departure_address"));
+                        tempParty.put("arrival", document.getData().get("arrival"));
+                        tempParty.put("arrival_address", document.getData().get("arrival_address"));
+                        tempParty.put("departureX", document.getData().get("departureX"));
+                        tempParty.put("departureY", document.getData().get("departureY"));
+                        tempParty.put("arrivalX", document.getData().get("arrivalX"));
+                        tempParty.put("arrivalY", document.getData().get("arrivalY"));
+                        tempParty.put("max_people", document.getData().get("max_people"));
+                        tempParty.put("same_gender", document.getData().get("same_gender"));
+                        tempParty.put("joined_uid", document.getData().get("joined_uid"));
+                        tempParty.put("date", document.getData().get("date"));
 
-                        if(distance(DepartureArrivalData.getDepartureX(), DepartureArrivalData.getDepartureY(), departureX, departureY) <= 500
-                                && distance(DepartureArrivalData.getArrivalX(),DepartureArrivalData.getArrivalY(), arrivalX, arrivalY) <= 500) {
-                            Map<String, Object> tempParty = new HashMap<>();
-                            tempParty.put("author_uid", document.getData().get("author_uid"));
-                            tempParty.put("departure", document.getData().get("departure"));
-                            tempParty.put("departure_address", document.getData().get("departure_address"));
-                            tempParty.put("arrival", document.getData().get("arrival"));
-                            tempParty.put("arrival_address", document.getData().get("arrival_address"));
-                            tempParty.put("departureX", document.getData().get("departureX"));
-                            tempParty.put("departureY", document.getData().get("departureY"));
-                            tempParty.put("arrivalX", document.getData().get("arrivalX"));
-                            tempParty.put("arrivalY", document.getData().get("arrivalY"));
-                            tempParty.put("max_people", document.getData().get("max_people"));
-                            tempParty.put("same_gender", document.getData().get("same_gender"));
-                            tempParty.put("joined_uid", document.getData().get("joined_uid"));
-                            tempParty.put("date", document.getData().get("date"));
+                        // 값 넣기
+                        result.add(tempParty);
 
-                            for(String key : tempParty.keySet()) {
-                                Object value = tempParty.get(key);
-                                System.out.println(key + " : " + value);
-                            }
+
+                        // 출력 확인
+                        for(String key : tempParty.keySet()) {
+                            Object value = tempParty.get(key);
+                            System.out.println(key + " : " + value);
                         }
                     }
-                } else {
-                    System.out.println("task0 : Error getting documents: " + task.getException());
                 }
-            });
-        }
+            } else {
+                System.out.println("task0 : Error getting documents: " + task.getException());
+            }
+            callback.onCallback(true);
+
+        });
+
+    }
+
+    public interface isTaskDoneCallback {
+        void onCallback(boolean inIsTaskDone);
     }
 
     // 경도 위도 미터 단위 거리 계산

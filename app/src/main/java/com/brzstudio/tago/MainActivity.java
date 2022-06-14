@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // 프래그먼트 생성
         fragment_find = new FindFragment();
         fragment_list = new ListFragment();

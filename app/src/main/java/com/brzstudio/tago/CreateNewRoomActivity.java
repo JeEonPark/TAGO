@@ -83,6 +83,10 @@ public class CreateNewRoomActivity extends AppCompatActivity {
                 // Alert를 생성해주고 보여주는 메소드(show를 선언해야 Alert가 생성됨)
                 alert.show();
             } else {
+                int gen = 0;
+                if(sameGenderCheckBox.isChecked()) {
+                    gen = LoginedUserData.getGender();
+                }
                 Map<String, Object> partyInfo = new HashMap<>();
                 partyInfo.put("author_uid", firebaseAuth.getCurrentUser().getUid());
                 partyInfo.put("departure", DepartureArrivalData.getDeparture());
@@ -94,7 +98,7 @@ public class CreateNewRoomActivity extends AppCompatActivity {
                 partyInfo.put("arrivalX", DepartureArrivalData.getArrivalX());
                 partyInfo.put("arrivalY", DepartureArrivalData.getArrivalY());
                 partyInfo.put("max_people", getCheckBox());
-                partyInfo.put("same_gender", sameGenderCheckBox.isChecked());
+                partyInfo.put("gender", gen);
                 partyInfo.put("joined_uid", Arrays.asList(firebaseAuth.getCurrentUser().getUid()));
                 partyInfo.put("date", new Timestamp(new Date()));
 

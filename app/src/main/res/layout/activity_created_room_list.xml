@@ -79,6 +79,8 @@
         >
 
         <ListView
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

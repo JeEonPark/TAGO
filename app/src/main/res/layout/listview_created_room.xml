@@ -7,9 +7,12 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:gravity="center"
+        android:background="@drawable/radius_list_box"
         android:weightSum="1">
 
         <!--프로필 사진-->
@@ -27,6 +30,7 @@
                 android:src="@drawable/circle_profile_grey" />
 
             <TextView
+                android:id="@+id/authorText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
@@ -107,7 +111,7 @@
                         android:textColor="#000000"
                         android:textSize="14dp" />
                     <TextView
-                        android:id="@+id/oldLastChatText"
+                        android:id="@+id/meter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/suit_medium"
@@ -126,6 +130,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/gender"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:layout_width="wrap_content"
@@ -144,6 +149,7 @@
                         android:background="@drawable/ic_baseline_people_alt_24"/>
 
                     <TextView
+                        android:id="@+id/nowmax"
                         android:layout_marginLeft="5dp"
                         android:gravity="center"
                         android:textAlignment="center"

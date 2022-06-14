@@ -6,11 +6,9 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +20,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,21 +30,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class FindSearchingActivity extends AppCompatActivity {
 
     public class ListItem {
         private String name;
-        private String phone;
+        private String roadAddress;
 
         public String getName() {
             return name;
@@ -55,18 +50,18 @@ public class FindSearchingActivity extends AppCompatActivity {
         public void setName(String name) {
             this.name = name;
         }
-        public String getPhone() {
-            return phone;
+        public String getRoadAddress() {
+            return roadAddress;
         }
-        public void setPhone(String phone) {
-            this.phone = phone;
+        public void setRoadAddress(String roadAddress) {
+            this.roadAddress = roadAddress;
         }
-        ListItem(String name, String phone) {
+        ListItem(String name, String roadAddress) {
             this.name = name;
-            this.phone = phone;
+            this.roadAddress = roadAddress;
         }
     }
-    public class ListItemAdapter extends BaseAdapter {
+    private class ListItemAdapter extends BaseAdapter {
         ArrayList<ListItem> items = new ArrayList<ListItem>();
         Context context;
 
@@ -96,10 +91,10 @@ public class FindSearchingActivity extends AppCompatActivity {
             }
 
             TextView nameText = convertView.findViewById(R.id.name);
-            TextView phoneText = convertView.findViewById(R.id.phone);
+            TextView addressText = convertView.findViewById(R.id.address);
 
             nameText.setText(listItem.getName());
-            phoneText.setText(listItem.getPhone());
+            addressText.setText(listItem.getRoadAddress());
             return convertView;
         }
 
@@ -174,6 +169,8 @@ public class FindSearchingActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
+                    System.out.println("is alive : " + gld.isAlive());
                     String resultJson = gld.getResult();
                     System.out.println(resultJson);
                     gld.interrupt();
@@ -408,6 +405,7 @@ public class FindSearchingActivity extends AppCompatActivity {
             requestHeaders.put("X-Naver-Client-Secret", clientSecret);
             String responseBody = get(apiURL, requestHeaders);
             result = responseBody;
+
 
         }
 

@@ -29,6 +29,10 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -62,9 +66,12 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         //이미 로그인 되어 있을 시 화면 넘겨줌
         if(firebaseAuth.getCurrentUser() != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            getUserData(user.getUid(), inIsTaskDone -> {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            });
         }
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,9 +92,11 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    getUserData(user.getUid(), inIsTaskDone -> {
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    });
                                 } else {
                                     {
                                         try {
@@ -109,6 +118,33 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void getUserData(String uid, final isTaskDoneCallback callback) {
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        DocumentReference userData = firestore.collection("UserInformation").document(uid);
+
+        userData.get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                DocumentSnapshot document = task.getResult();
+                if(document.exists()){
+                    Log.d(TAG, "Logined user data : " + document.getData());
+                    LoginedUserData.setEmail((String) document.getData().get("email"));
+                    LoginedUserData.setLongGender((Long) document.getData().get("gender"));
+                    LoginedUserData.setNickname((String) document.getData().get("nickname"));
+                } else {
+                    Log.d(TAG, "No such document");
+                }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
+            }
+            callback.onCallback(true);
+
+        });
+    }
+
+    public interface isTaskDoneCallback {
+        void onCallback(boolean inIsTaskDone);
     }
 
     // editText 외부 클릭 시 포커스 해제
