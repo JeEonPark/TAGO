@@ -10,12 +10,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -23,6 +29,9 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -111,30 +120,32 @@ public class ChatRoomActivity extends AppCompatActivity {
     ListView listView;
     ListItemAdapter adapter;
 
+    EditText messageEditText;
+
+    ImageButton sendButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
 
+
+
         firestore = FirebaseFirestore.getInstance();
         adapter = new ListItemAdapter();
 
-        // topBar에서 상단바만큼 margin 추가
-        topBar = findViewById(R.id.topBar);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        params.setMargins(0, getStatusBarHeight(this), 0, 0);
-        topBar.setLayoutParams(params);
+//        // topBar에서 상단바만큼 margin 추가
+//        topBar = findViewById(R.id.topBar);
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+//        params.setMargins(0, getStatusBarHeight(this), 0, 0);
+//        topBar.setLayoutParams(params);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         // 리스트뷰 셋업
         listView = findViewById(R.id.list);
 
-
-
-    }
-
-    protected void onStart() {
-        super.onStart();
-
+        //파이어베이스
         // 이전 intent 데이터
         Intent intendData = getIntent();
         String uid = intendData.getStringExtra("uid");
@@ -163,6 +174,31 @@ public class ChatRoomActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+
+
+        sendButton = findViewById(R.id.sendButton);
+        messageEditText = findViewById(R.id.messageEditText);
+        sendButton.setOnClickListener(view -> {
+            String text = messageEditText.getText().toString();
+            DocumentReference documentReference = firestore.collection("TagoParty").document(uid).collection("messages").document();
+            Map<String, Object> chatInfo = new HashMap<>();
+            chatInfo.put("date", new Timestamp(new Date()));
+            chatInfo.put("message", text);
+            chatInfo.put("sender_uid", LoginedUserData.getUid());
+            documentReference.set(chatInfo);
+            messageEditText.setText("");
+
+        });
+
+
+
+    }
+
+    protected void onStart() {
+        super.onStart();
+
+
     }
 
     // 상단바 높이 구하는 함수
