@@ -1,20 +1,102 @@
 package com.brzstudio.tago;
 
+import static android.content.ContentValues.TAG;
+import static android.content.Context.LOCATION_SERVICE;
+
+import android.Manifest;
 import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.naver.maps.map.MapFragment;
+import com.naver.maps.map.NaverMap;
+import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.util.FusedLocationSource;
 
 import java.util.ArrayList;
 
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements LocationListener {
+
+    public Location getCurrentLocation(Context mContext) {
+        int MIN_TIME_BW_UPDATES = 1000;
+        int MIN_DISTANCE_CHANGE_FOR_UPDATES = 5;
+        Location loc = null;
+        Double latitude, longitude;
+
+        LocationManager locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
+
+        // getting GPS status
+        Boolean checkGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        // getting network status
+        Boolean checkNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        if (!checkGPS && !checkNetwork) {
+            Toast.makeText(mContext, "No Service Provider Available", Toast.LENGTH_SHORT).show();
+        } else {
+            //this.canGetLocation = true;
+            // First get location from Network Provider
+            if (checkNetwork) {
+                Toast.makeText(mContext, "Network", Toast.LENGTH_SHORT).show();
+                try {
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                    Log.d("Network", "Network");
+                    if (locationManager != null) {
+                        loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    }
+                    if (loc != null) {
+                        Log.d(TAG, "getCurrentLocation: " + loc.getLatitude() + ", " + loc.getLongitude());
+                        return loc;
+                    }
+                } catch (SecurityException e) { }
+            }
+        }
+        // if GPS Enabled get lat/long using GPS Services
+        if (checkGPS) {
+            if (loc == null) {
+                try {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                    Log.d("GPS Enabled", "GPS Enabled");
+                    if (locationManager != null) {
+                        loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        if (loc != null) {
+                            latitude = loc.getLatitude();
+                            longitude = loc.getLongitude();
+                        }
+                    }
+                } catch (SecurityException e) { }
+            }
+        }
+        Location locErr = null;
+        return locErr;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) { }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) { }
+
+    @Override
+    public void onProviderEnabled(String provider) { }
+
+    @Override
+    public void onProviderDisabled(String provider) { }
 
     public class NearList{
         private String nearAuthor;
@@ -65,8 +147,16 @@ public class ListFragment extends Fragment {
             NearList nearList = items.get(position);
 
             if(convertView == null) {
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.listview_created_room_gender_0, parent, false);
+//                if (nearList.getNearGender() == 0) {
+                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    convertView = inflater.inflate(R.layout.listview_created_room_gender_0, parent, false);
+//                } else if (nearList.getNearGender() == 1) {
+//                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                    convertView = inflater.inflate(R.layout.listview_created_room_gender_1, parent, false);
+//                } else if (nearList.getNearGender() == 2) {
+//                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                    convertView = inflater.inflate(R.layout.listview_created_room_gender_2, parent, false);
+//                }
             }
 
             TextView nearAuthorText = convertView.findViewById(R.id.authorText);
@@ -101,9 +191,15 @@ public class ListFragment extends Fragment {
 
         adapter.addItem(new NearList("BreakeR", "상명대", "호서대", "123", "혼성", "1/3"));
         adapter.addItem(new NearList("BreakeR", "상명대", "호서대", "123", "남성", "1/3"));
-        adapter.addItem(new NearList("BreakeR", "상명대", "호서대", "123", "혼성", "1/3"));
-        adapter.addItem(new NearList("BreakeR", "상명대", "호서대", "123", "혼성", "1/3"));
+        adapter.addItem(new NearList("BreakeR", "상명대", "호서대", "123", "여성", "1/3"));
+        adapter.addItem(new NearList("BreakeR", "상명대", "호서대", "123", "남성", "1/3"));
         listView.setAdapter(adapter);
+
+        Location loc = getCurrentLocation(getContext());
+        if (loc != null) {
+            System.out.println("Test--------------------Test--------------------Test--------------------Test");
+            Log.d(TAG, "onCreateView: " + loc.getLatitude() + ", " + loc.getLongitude());
+        }
 
         return view;
     }
