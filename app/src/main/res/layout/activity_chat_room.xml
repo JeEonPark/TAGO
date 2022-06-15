@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
 
     <!-- 제목, 상단바-->
     <LinearLayout
+        android:id="@+id/topBarLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:gravity="top"
         android:orientation="vertical">
 
@@ -47,14 +49,19 @@
     <!--채팅 리스트-->
     <ListView
         android:id="@+id/list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/editTextLinearLayout"
+        android:layout_below="@+id/topBarLinearLayout"
         android:divider="@null"
-        android:dividerHeight="0dp"/>
+        android:dividerHeight="0dp"
+        android:stackFromBottom="true"
+        android:transcriptMode="normal" />
 
     <!--채팅 입력 창-->
     <LinearLayout
+        android:id="@+id/editTextLinearLayout"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -62,11 +69,12 @@
 
         <!--입력 창-->
         <EditText
-            android:layout_width="match_parent"
+            android:id="@+id/messageEditText"
+            android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
             android:hint="메시지를 입력하세요."
             android:fontFamily="@font/suit_light"
             android:textColor="#000000"
@@ -75,6 +83,7 @@
 
         <!--보내기 버튼-->
         <ImageButton
+            android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_send_24"
@@ -85,4 +94,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.brzstudio.tago;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -12,8 +13,13 @@ import android.widget.TextView;
 
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraPosition;
+import com.naver.maps.map.MapView;
+import com.naver.maps.map.NaverMap;
+import com.naver.maps.map.OnMapReadyCallback;
 
-public class RoomInformationActivity extends AppCompatActivity {
+public class RoomInformationActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     LinearLayout topBar;
     TextView departureTextView;
@@ -23,6 +29,9 @@ public class RoomInformationActivity extends AppCompatActivity {
     TextView nowmaxTextView;
 
     Button joinRoomButton;
+
+    MapView mapViewFragment;
+    NaverMap naverMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,12 @@ public class RoomInformationActivity extends AppCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         params.setMargins(0, getStatusBarHeight(this), 0, 0);
         topBar.setLayoutParams(params);
+
+        // 지도 설정
+        //네이버지도 관련
+        mapViewFragment = (MapView) findViewById(R.id.map_view_fragment);
+        mapViewFragment.onCreate(savedInstanceState);
+        mapViewFragment.getMapAsync(this);
 
         departureTextView = findViewById(R.id.departureTextView);
         departureAddressTextView = findViewById(R.id.departureAddressTextView);
@@ -72,7 +87,9 @@ public class RoomInformationActivity extends AppCompatActivity {
 
         });
 
+
     }
+
 
     public static int getStatusBarHeight(Context context) {
         int screenSizeType = (context.getResources().getConfiguration().screenLayout &
@@ -89,4 +106,55 @@ public class RoomInformationActivity extends AppCompatActivity {
 
         return statusbar;
     }
+
+    //네이버지도 관련 함수-------------------------------------------------------------------------
+    @Override
+    public void onMapReady(@NonNull NaverMap naverMap) {
+        CameraPosition cameraPosition = new CameraPosition(new LatLng(DepartureArrivalData.getDepartureX(),DepartureArrivalData.getDepartureY()), 16);
+        naverMap.setCameraPosition(cameraPosition);
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        mapViewFragment.onStart();
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mapViewFragment.onResume();
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mapViewFragment.onPause();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+        mapViewFragment.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        mapViewFragment.onStop();
+    }
+
+    @Override
+    public void onLowMemory()
+    {
+        super.onLowMemory();
+        mapViewFragment.onLowMemory();
+    }
+
+
 }
