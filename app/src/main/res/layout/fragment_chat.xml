@@ -9,188 +9,219 @@
 
     <!--제목, 상단바-->
     <LinearLayout
-        android:gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:gravity="bottom"
         android:orientation="horizontal">
 
-        <TextView
+        <View
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp" />
+
+        <LinearLayout
+            android:id="@+id/topBarList"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="채팅 목록"
-            android:fontFamily="@font/suit_bold"
-            android:textColor="#000000"
-            android:textSize="16dp"/>
-    </LinearLayout>
+            android:orientation="horizontal">
 
-    <!--최근 채팅-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/suit_bold"
+                android:gravity="center"
+                android:text="채팅 목록"
+                android:textColor="#000000"
+                android:textSize="16dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"
-            android:text="최근 채팅"
-            android:fontFamily="@font/suit_bold"
-            android:textColor="#80000000"
-            android:textSize="15dp"/>
-    </LinearLayout>
+        </LinearLayout>
 
-    <!--최근 채팅 목록-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:gravity="center"
-        android:weightSum="1" >
-
-        <!--프로필 사진-->
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_height="60dp"
+            android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/recentProfilePic"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@drawable/circle_profile_grey"/>
+                android:id="@+id/refresh"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_round_refresh_30" />
         </LinearLayout>
 
-        <!--내용-->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <!--경로 텍스트-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="35dp">
-
-                <!--출발지 텍스트-->
-                <TextView
-                    android:id="@+id/recentDepartureText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginLeft="15dp"
-                    android:text="천안역"
-                    android:fontFamily="@font/suit_medium"
-                    android:textColor="#000000"
-                    android:textSize="14dp"/>
-
-                <!--방향 UI-->
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/play_arrow"/>
-
-                <!--도착지 텍스트-->
-                <TextView
-                    android:id="@+id/recentDestinationText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="천안역"
-                    android:fontFamily="@font/suit_medium"
-                    android:textColor="#000000"
-                    android:textSize="14dp"/>
-            </LinearLayout>
-
-            <!--내용 텍스트-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/recentLastChatText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/suit_medium"
-                    android:text="알겠습니다."
-                    android:textColor="#80000000"
-                    android:textSize="14dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!--인원 수-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="30dp"
-            android:orientation="horizontal"
-            android:layout_gravity="end">
-
-            <!--인원 수 UI-->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_baseline_people_alt_24" />
-            </LinearLayout>
-
-            <!--인원 수 표시-->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
-
-                <!--현재 인원-->
-                <TextView
-                    android:id="@+id/recentLivePeople"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:fontFamily="@font/suit_medium"
-                    android:textColor="#80000000"
-                    android:textSize="14dp"
-                    android:textAlignment="textEnd" />
-
-                <!--슬래시-->
-                <TextView
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="/"
-                    android:fontFamily="@font/suit_medium"
-                    android:textColor="#80000000"
-                    android:textSize="14dp"
-                    android:textAlignment="center"/>
-
-                <!--총 인원-->
-                <TextView
-                    android:id="@+id/recentTotalPeople"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="3"
-                    android:fontFamily="@font/suit_medium"
-                    android:textColor="#80000000"
-                    android:textSize="14dp"
-                    android:textAlignment="textStart"/>
-            </LinearLayout>
-
-        </LinearLayout>
 
     </LinearLayout>
+
+<!--    &lt;!&ndash;최근 채팅&ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="최근 채팅"-->
+<!--            android:fontFamily="@font/suit_bold"-->
+<!--            android:textColor="#80000000"-->
+<!--            android:textSize="15dp"/>-->
+<!--    </LinearLayout>-->
+
+<!--    &lt;!&ndash;최근 채팅 목록&ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:gravity="center"-->
+<!--        android:weightSum="1" >-->
+
+<!--        &lt;!&ndash;프로필 사진&ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/recentProfilePic"-->
+<!--                android:layout_width="45dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:src="@drawable/circle_profile_grey"/>-->
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash;내용&ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+
+<!--            &lt;!&ndash;경로 텍스트&ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_height="35dp">-->
+
+<!--                &lt;!&ndash;출발지 텍스트&ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/recentDepartureText"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="18dp"-->
+<!--                    android:layout_marginLeft="15dp"-->
+<!--                    android:text="천안역"-->
+<!--                    android:fontFamily="@font/suit_medium"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:textSize="14dp"/>-->
+
+<!--                &lt;!&ndash;방향 UI&ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:layout_width="15dp"-->
+<!--                    android:layout_height="15dp"-->
+<!--                    android:layout_marginTop="18dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:src="@drawable/play_arrow"/>-->
+
+<!--                &lt;!&ndash;도착지 텍스트&ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/recentDestinationText"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="18dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:text="천안역"-->
+<!--                    android:fontFamily="@font/suit_medium"-->
+<!--                    android:textColor="#000000"-->
+<!--                    android:textSize="14dp"/>-->
+<!--            </LinearLayout>-->
+
+<!--            &lt;!&ndash;내용 텍스트&ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:layout_weight="1">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/recentLastChatText"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="15dp"-->
+<!--                    android:layout_marginTop="2dp"-->
+<!--                    android:fontFamily="@font/suit_medium"-->
+<!--                    android:text="알겠습니다."-->
+<!--                    android:textColor="#80000000"-->
+<!--                    android:textSize="14dp" />-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash;인원 수&ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginRight="30dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_gravity="end">-->
+
+<!--            &lt;!&ndash;인원 수 UI&ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:gravity="center">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="20dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:src="@drawable/ic_baseline_people_alt_24" />-->
+<!--            </LinearLayout>-->
+
+<!--            &lt;!&ndash;인원 수 표시&ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:gravity="center_vertical"-->
+<!--                >-->
+
+<!--                &lt;!&ndash;현재 인원&ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/recentLivePeople"-->
+<!--                    android:layout_width="10dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1"-->
+<!--                    android:fontFamily="@font/suit_medium"-->
+<!--                    android:textColor="#80000000"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textAlignment="textEnd" />-->
+
+<!--                &lt;!&ndash;슬래시&ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:layout_width="10dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="/"-->
+<!--                    android:fontFamily="@font/suit_medium"-->
+<!--                    android:textColor="#80000000"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textAlignment="center"/>-->
+
+<!--                &lt;!&ndash;총 인원&ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/recentTotalPeople"-->
+<!--                    android:layout_width="10dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="3"-->
+<!--                    android:fontFamily="@font/suit_medium"-->
+<!--                    android:textColor="#80000000"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textAlignment="textStart"/>-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
 
     <!--완료된 채팅-->
     <LinearLayout
@@ -202,7 +233,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:gravity="center"
-            android:text="완료된 채팅"
+            android:text="채팅방"
             android:fontFamily="@font/suit_bold"
             android:textColor="#80000000"
             android:textSize="15dp"/>

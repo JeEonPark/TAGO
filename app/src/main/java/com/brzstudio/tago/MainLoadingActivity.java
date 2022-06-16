@@ -26,15 +26,31 @@ public class MainLoadingActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+
+
         //이미 로그인되어있으면 넘겨줌
         if(firebaseAuth.getCurrentUser() != null) {
             user = firebaseAuth.getCurrentUser();
             getUserData(user.getUid(), inIsTaskDone -> {
+                try
+                {
+                    Thread.sleep(500);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
             });
         } else {
+            try
+            {
+                Thread.sleep(500);
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
             finish();

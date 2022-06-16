@@ -7,35 +7,41 @@
     android:orientation="vertical"
     tools:context=".ListFragment">
 
-<!--    <Button-->
-<!--        android:id="@+id/signoutButton"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/signoutButton"-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    <Button-->
-<!--        android:id="@+id/testButton"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.8" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/testButton"-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.8" />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:gravity="bottom"
-        android:orientation="vertical" >
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp" />
 
         <LinearLayout
             android:id="@+id/topBarList"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -44,37 +50,42 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/suit_bold"
                 android:gravity="center"
-                android:text="생성된 방 목록"
+                android:text="주변 목록"
                 android:textColor="#000000"
                 android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/numberOfPeopleList"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="4dp"
-                android:background="@drawable/list_count"
-                android:gravity="center"
-                android:text="-"
-                android:textColor="#53B64F"
-                android:textSize="12dp"
-                android:fontFamily="@font/suit_bold" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/refresh"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_round_refresh_30" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
-        <FrameLayout
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F8F8F8">
+
+        <ListView
+            android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F8F8F8">
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
 
-            <ListView
-                android:id="@+id/list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="13dp"
-                android:layout_marginRight="13dp"
-                android:divider="@null"
-                android:dividerHeight="0dp"/>
-
-        </FrameLayout>
+    </FrameLayout>
 </LinearLayout>

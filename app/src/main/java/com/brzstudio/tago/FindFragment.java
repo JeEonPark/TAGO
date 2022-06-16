@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
     Button departureButton;
     Button arrivalButton;
     Button findButton;
+    CheckBox check1;
 
     public FindFragment() { }
 
@@ -74,6 +76,8 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
         //같이 탈 사람 찾기 버튼
         findButton = (Button) view.findViewById(R.id.findButton);
         findButton.setOnClickListener(this);
+
+        check1 = view.findViewById(R.id.check1);
 
         //값 설정
         if(DepartureArrivalData.getDoneDeparture() && DepartureArrivalData.getDoneArrival()){
@@ -115,6 +119,7 @@ public class FindFragment extends Fragment implements View.OnClickListener, OnMa
             } else {
                 FragmentActivity f = getActivity();
                 Intent intent = new Intent(f, SearchLoadingActivity.class);
+                intent.putExtra("sameGender", check1.isChecked());
                 startActivityIntent.launch(intent);
             }
         }

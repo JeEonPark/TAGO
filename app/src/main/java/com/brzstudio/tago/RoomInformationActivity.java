@@ -1,5 +1,9 @@
 package com.brzstudio.tago;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +37,9 @@ public class RoomInformationActivity extends AppCompatActivity implements OnMapR
     MapView mapViewFragment;
     NaverMap naverMap;
 
+    String departureX;
+    String departureY;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +52,7 @@ public class RoomInformationActivity extends AppCompatActivity implements OnMapR
         topBar.setLayoutParams(params);
 
         // 지도 설정
-        //네이버지도 관련
+        // 네이버지도 관련
         mapViewFragment = (MapView) findViewById(R.id.map_view_fragment);
         mapViewFragment.onCreate(savedInstanceState);
         mapViewFragment.getMapAsync(this);
@@ -66,8 +73,8 @@ public class RoomInformationActivity extends AppCompatActivity implements OnMapR
         String departureAddress = intendData.getStringExtra("departureAddress");
         String arrivalAddress = intendData.getStringExtra("arrivalAddress");
         String nowmax = intendData.getStringExtra("nowmax");
-        String departureX = intendData.getStringExtra("departureX");
-        String departureY = intendData.getStringExtra("departureY");
+        departureX = intendData.getStringExtra("departureX");
+        departureY = intendData.getStringExtra("departureY");
 
         departureTextView.setText(departure);
         arrivalTextView.setText(arrival);
@@ -83,12 +90,23 @@ public class RoomInformationActivity extends AppCompatActivity implements OnMapR
             Intent intent = new Intent(getApplicationContext(), ChatRoomActivity.class);
             intent.putExtra("uid", uid);
 
-            startActivity(intent);
+            startActivityIntent.launch(intent);
 
         });
 
 
     }
+
+    final ActivityResultLauncher<Intent> startActivityIntent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == 99) { // finish
+                        finish();
+                    }
+                }
+            });
 
 
     public static int getStatusBarHeight(Context context) {
@@ -110,7 +128,7 @@ public class RoomInformationActivity extends AppCompatActivity implements OnMapR
     //네이버지도 관련 함수-------------------------------------------------------------------------
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
-        CameraPosition cameraPosition = new CameraPosition(new LatLng(DepartureArrivalData.getDepartureX(),DepartureArrivalData.getDepartureY()), 16);
+        CameraPosition cameraPosition = new CameraPosition(new LatLng(Double.parseDouble(departureX), Double.parseDouble(departureY)), 16);
         naverMap.setCameraPosition(cameraPosition);
     }
 

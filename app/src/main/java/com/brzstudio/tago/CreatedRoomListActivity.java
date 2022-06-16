@@ -1,11 +1,17 @@
 package com.brzstudio.tago;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +21,108 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreatedRoomListActivity extends AppCompatActivity {
+public class CreatedRoomListActivity extends AppCompatActivity implements LocationListener {
+
+    // 경도 위도 미터 단위 거리 계산
+    private static double distance(double lat1, double lon1, double lat2, double lon2) {
+
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1609.344;
+
+        return (dist);
+    }
+
+    // This function converts decimal degrees to radians
+    private static double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+
+    // This function converts radians to decimal degrees
+    private static double rad2deg(double rad) {
+        return (rad * 180 / Math.PI);
+    }
+
+    public Location getCurrentLocation(Context mContext) {
+        int MIN_TIME_BW_UPDATES = 1000;
+        int MIN_DISTANCE_CHANGE_FOR_UPDATES = 5;
+        Location loc = null;
+        Double latitude, longitude;
+
+        LocationManager locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
+
+        // getting GPS status
+        Boolean checkGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        // getting network status
+        Boolean checkNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        if (!checkGPS && !checkNetwork) {
+            Toast.makeText(mContext, "No Service Provider Available", Toast.LENGTH_SHORT).show();
+        } else {
+            //this.canGetLocation = true;
+            // First get location from Network Provider
+            if (checkNetwork) {
+                try {
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                    if (locationManager != null) {
+                        loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    }
+                    if (loc != null) {
+                        Log.d(TAG, "getCurrentLocation: " + loc.getLatitude() + ", " + loc.getLongitude());
+                        return loc;
+                    }
+                } catch (SecurityException e) {
+                }
+            }
+        }
+        // if GPS Enabled get lat/long using GPS Services
+        if (checkGPS) {
+            if (loc == null) {
+                try {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                    Log.d("GPS Enabled", "GPS Enabled");
+                    if (locationManager != null) {
+                        loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        if (loc != null) {
+                            latitude = loc.getLatitude();
+                            longitude = loc.getLongitude();
+                        }
+                    }
+                } catch (SecurityException e) {
+                }
+            }
+        }
+        Location locErr = null;
+        return locErr;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+    }
 
     public class ListItem {
         private String listAuthor;
@@ -185,7 +286,10 @@ public class CreatedRoomListActivity extends AppCompatActivity {
             List<String> joined_uid = (List<String>) resultList.get(i).get("joined_uid");
             String nowmax = joined_uid.size() + "/" + max_people;
 
-            adapter.addItem(new ListItem(author, departure, arrival, "124", gender, nowmax));
+            Location loc = getCurrentLocation(getApplicationContext());
+            int dis = (int) distance(loc.getLatitude(), loc.getLongitude(), (double) resultList.get(i).get("departureX") , (double) resultList.get(i).get("departureY"));
+
+            adapter.addItem(new ListItem(author, departure, arrival, dis + "m", gender, nowmax));
         }
 
         listView.setAdapter(adapter);

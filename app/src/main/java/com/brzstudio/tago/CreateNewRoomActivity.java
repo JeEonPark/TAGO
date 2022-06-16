@@ -120,7 +120,7 @@ public class CreateNewRoomActivity extends AppCompatActivity implements OnMapRea
                 documentReference.set(partyInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        System.out.println("Success");
+                        finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

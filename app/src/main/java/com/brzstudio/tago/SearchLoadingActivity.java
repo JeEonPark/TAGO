@@ -28,12 +28,16 @@ import java.util.Map;
 
 public class SearchLoadingActivity extends AppCompatActivity {
 
-    ArrayList<Map<String, Object>> result = new ArrayList<>();;
+    ArrayList<Map<String, Object>> result = new ArrayList<>();
+    Boolean sameGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_loading);
+
+        Intent intentGet = getIntent();
+        sameGender = intentGet.getBooleanExtra("sameGender", true);
 
 
         getPartyData(inIsTaskDone -> {
@@ -53,7 +57,6 @@ public class SearchLoadingActivity extends AppCompatActivity {
         CollectionReference partyRef = firestore.collection("TagoParty");
 
         partyRef.get().addOnCompleteListener(task -> {
-
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     System.out.println("-----------Succ----------");
@@ -61,34 +64,56 @@ public class SearchLoadingActivity extends AppCompatActivity {
                     Double departureY = (Double) document.getData().get("departureY");
                     Double arrivalX = (Double) document.getData().get("arrivalX");
                     Double arrivalY = (Double) document.getData().get("arrivalY");
+                    long dbGender = (long) document.getData().get("gender");
+
+
 
                     if(distance(DepartureArrivalData.getDepartureX(), DepartureArrivalData.getDepartureY(), departureX, departureY) <= 500
                             && distance(DepartureArrivalData.getArrivalX(),DepartureArrivalData.getArrivalY(), arrivalX, arrivalY) <= 500) {
-                        Map<String, Object> tempParty = new HashMap<>();
-                        tempParty.put("uid", document.getId());
-                        tempParty.put("author_uid", document.getData().get("author_uid"));
-                        tempParty.put("departure", document.getData().get("departure"));
-                        tempParty.put("departure_address", document.getData().get("departure_address"));
-                        tempParty.put("arrival", document.getData().get("arrival"));
-                        tempParty.put("arrival_address", document.getData().get("arrival_address"));
-                        tempParty.put("departureX", document.getData().get("departureX"));
-                        tempParty.put("departureY", document.getData().get("departureY"));
-                        tempParty.put("arrivalX", document.getData().get("arrivalX"));
-                        tempParty.put("arrivalY", document.getData().get("arrivalY"));
-                        tempParty.put("max_people", document.getData().get("max_people"));
-                        tempParty.put("gender", document.getData().get("gender"));
-                        tempParty.put("joined_uid", document.getData().get("joined_uid"));
-                        tempParty.put("date", document.getData().get("date"));
 
-                        // 값 넣기
-                        result.add(tempParty);
+                        if(sameGender && dbGender == LoginedUserData.getGender()) {
+                            Map<String, Object> tempParty = new HashMap<>();
+                            tempParty.put("uid", document.getId());
+                            tempParty.put("author_uid", document.getData().get("author_uid"));
+                            tempParty.put("departure", document.getData().get("departure"));
+                            tempParty.put("departure_address", document.getData().get("departure_address"));
+                            tempParty.put("arrival", document.getData().get("arrival"));
+                            tempParty.put("arrival_address", document.getData().get("arrival_address"));
+                            tempParty.put("departureX", document.getData().get("departureX"));
+                            tempParty.put("departureY", document.getData().get("departureY"));
+                            tempParty.put("arrivalX", document.getData().get("arrivalX"));
+                            tempParty.put("arrivalY", document.getData().get("arrivalY"));
+                            tempParty.put("max_people", document.getData().get("max_people"));
+                            tempParty.put("gender", document.getData().get("gender"));
+                            tempParty.put("joined_uid", document.getData().get("joined_uid"));
+                            tempParty.put("date", document.getData().get("date"));
 
+                            // 값 넣기
+                            result.add(tempParty);
+                        } else if (!sameGender) {
+                            if(dbGender == LoginedUserData.getGender() || dbGender == 0) {
+                                Map<String, Object> tempParty = new HashMap<>();
+                                tempParty.put("uid", document.getId());
+                                tempParty.put("author_uid", document.getData().get("author_uid"));
+                                tempParty.put("departure", document.getData().get("departure"));
+                                tempParty.put("departure_address", document.getData().get("departure_address"));
+                                tempParty.put("arrival", document.getData().get("arrival"));
+                                tempParty.put("arrival_address", document.getData().get("arrival_address"));
+                                tempParty.put("departureX", document.getData().get("departureX"));
+                                tempParty.put("departureY", document.getData().get("departureY"));
+                                tempParty.put("arrivalX", document.getData().get("arrivalX"));
+                                tempParty.put("arrivalY", document.getData().get("arrivalY"));
+                                tempParty.put("max_people", document.getData().get("max_people"));
+                                tempParty.put("gender", document.getData().get("gender"));
+                                tempParty.put("joined_uid", document.getData().get("joined_uid"));
+                                tempParty.put("date", document.getData().get("date"));
 
-                        // 출력 확인
-                        for(String key : tempParty.keySet()) {
-                            Object value = tempParty.get(key);
-                            System.out.println(key + " : " + value);
+                                // 값 넣기
+                                result.add(tempParty);
+                            }
                         }
+
+
                     }
                 }
             } else {
