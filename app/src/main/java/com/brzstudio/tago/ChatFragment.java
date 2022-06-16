@@ -153,8 +153,11 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     //버튼 이벤트 처리
     public void onClick(View view) {
         if(view.getId() == R.id.refresh) {
-            getChatRoom(inIsTaskDone -> {
-                adapter = new ChatListItemAdapter();
+            UidNicknameData.updateUid(inIsTaskDone2 -> {
+                getChatRoom(inIsTaskDone -> {
+                    adapter = new ChatListItemAdapter();
+
+                });
             });
         }
     }

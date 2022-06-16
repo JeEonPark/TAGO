@@ -134,6 +134,9 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         setResult(99);
 
+        UidNicknameData.updateUid(inIsTaskDone -> {
+
+        });
 
 
         firestore = FirebaseFirestore.getInstance();

@@ -313,22 +313,24 @@ public class ListFragment extends Fragment implements View.OnClickListener, Loca
     //버튼 이벤트 처리
     public void onClick(View view) {
         if(view.getId() == R.id.refresh) {
-            getRoomList(inIsTaskDone -> {
-                adapter = new NearListAdapter();
-                for (int i = 0; i < result.size(); i++) {
-                    int max_people = (int) (long) result.get(i).get("max_people");
-                    List<String> joined_uid = (List<String>) result.get(i).get("joined_uid");
-                    String nowmax = joined_uid.size() + "/" + max_people;
-                    Location loc = getCurrentLocation(getContext());
-                    int dis = (int) distance(loc.getLatitude(), loc.getLongitude(), (double) result.get(i).get("departureX") , (double) result.get(i).get("departureY"));
-                    adapter.addItem(new NearList(UidNicknameData.getUidNicknameMap().get((String) result.get(i).get("author_uid")),
-                            result.get(i).get("departure") + "",
-                            result.get(i).get("arrival") + "",
-                            dis + "m",
-                            (int) (long) result.get(i).get("gender"),
-                            nowmax));
-                    listView.setAdapter(adapter);
-                }
+            UidNicknameData.updateUid(inIsTaskDone2 -> {
+                getRoomList(inIsTaskDone -> {
+                    adapter = new NearListAdapter();
+                    for (int i = 0; i < result.size(); i++) {
+                        int max_people = (int) (long) result.get(i).get("max_people");
+                        List<String> joined_uid = (List<String>) result.get(i).get("joined_uid");
+                        String nowmax = joined_uid.size() + "/" + max_people;
+                        Location loc = getCurrentLocation(getContext());
+                        int dis = (int) distance(loc.getLatitude(), loc.getLongitude(), (double) result.get(i).get("departureX") , (double) result.get(i).get("departureY"));
+                        adapter.addItem(new NearList(UidNicknameData.getUidNicknameMap().get((String) result.get(i).get("author_uid")),
+                                result.get(i).get("departure") + "",
+                                result.get(i).get("arrival") + "",
+                                dis + "m",
+                                (int) (long) result.get(i).get("gender"),
+                                nowmax));
+                        listView.setAdapter(adapter);
+                    }
+                });
             });
         }
     }
